@@ -1,0 +1,2468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- ============================================================
+     CLOSATIX — Single-file marketing site
+     No build tools. No frameworks. Open index.html in a browser.
+     ============================================================ -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0B0A09">
+
+<!-- ============================ SEO ============================ -->
+<title>CLOSATIX | AI Lead Automation for Real Estate Teams</title>
+<meta name="description" content="CLOSATIX captures, qualifies, organizes and follows up with incoming real estate leads automatically. AI lead qualification, CRM automation and appointment booking in one connected workflow.">
+<meta name="keywords" content="real estate automation, AI lead qualification, real estate lead automation, real estate CRM automation, lead follow-up automation">
+<meta name="author" content="CLOSATIX">
+<meta name="robots" content="index, follow">
+<!-- Replace with your live domain once deployed -->
+<link rel="canonical" href="https://www.closatix.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CLOSATIX">
+<meta property="og:title" content="CLOSATIX | AI Lead Automation for Real Estate Teams">
+<meta property="og:description" content="Turn incoming real estate leads into an organized, automated workflow — qualified, routed, followed up and booked.">
+<meta property="og:url" content="https://www.closatix.com/">
+<meta property="og:locale" content="en_US">
+<!-- OG IMAGE: add a 1200x630 image named og-image.jpg next to index.html -->
+<meta property="og:image" content="https://www.closatix.com/og-image.jpg">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CLOSATIX | AI Lead Automation for Real Estate Teams">
+<meta name="twitter:description" content="Turn incoming real estate leads into an organized, automated workflow — qualified, routed, followed up and booked.">
+<meta name="twitter:image" content="https://www.closatix.com/og-image.jpg">
+
+<!-- ========================== FAVICON ==========================
+     Temporary inline SVG favicon.
+     REPLACE: drop favicon.ico / favicon.svg next to index.html and
+     swap the href below for: href="/favicon.svg"
+     ============================================================ -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='9' fill='%230B0A09'/><path d='M26.4 13.6a8.8 8.8 0 1 0 0 12.8' fill='none' stroke='%23C9B8A5' stroke-width='2.4' stroke-linecap='round'/><circle cx='27.6' cy='20' r='2.3' fill='%23C9B8A5'/></svg>">
+
+<!-- ========================== FONTS =========================== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- ==================== STRUCTURED DATA ======================= -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CLOSATIX",
+  "url": "https://www.closatix.com/",
+  "description": "CLOSATIX builds AI automation systems that capture, qualify, organize and follow up with incoming real estate leads.",
+  "areaServed": "Global",
+  "knowsAbout": ["Real estate lead automation", "AI lead qualification", "CRM automation", "Appointment booking automation"]
+}
+</script>
+
+<style>
+/* ============================================================
+   1. RESET
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  overflow-x: clip;
+}
+body { overflow-x: clip; }
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+/* ============================================================
+   2. DESIGN SYSTEM — TOKENS
+   ============================================================ */
+:root {
+  /* Brand palette */
+  --ink:        #0B0A09;
+  --charcoal:   #141210;
+  --espresso:   #2A1D15;
+  --brown-deep: #3A281F;
+  --brown:      #765642;
+  --brown-soft: #9A7A62;
+  --beige:      #C9B8A5;
+  --cream:      #F4EFE8;
+  --offwhite:   #FAF8F5;
+
+  /* Lead status — intentionally muted */
+  --hot:  #B4553A;
+  --warm: #A9823F;
+  --cold: #8A857E;
+
+  /* Type */
+  --ff-display: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --ff-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* Space & shape */
+  --container: 1200px;
+  --gutter: 1.5rem;
+  --section-y: clamp(4.5rem, 8.5vw, 8.5rem);
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --nav-h: 76px;
+
+  /* Motion */
+  --ease: cubic-bezier(.22,.61,.36,1);
+
+  /* Default (dark) theme values so the page is never unstyled */
+  --bg: var(--ink);
+  --fg: var(--offwhite);
+  --fg-2: rgba(250,248,245,.70);
+  --fg-3: rgba(250,248,245,.46);
+  --line: rgba(201,184,165,.15);
+  --line-2: rgba(201,184,165,.30);
+  --card: rgba(255,255,255,.030);
+  --card-2: rgba(255,255,255,.055);
+  --accent: var(--beige);
+  --btn-bg: var(--cream);
+  --btn-fg: #14100D;
+  --focus: var(--beige);
+  --shadow: 0 24px 60px rgba(0,0,0,.45);
+}
+
+/* Section themes ------------------------------------------------ */
+.theme-dark {
+  --bg: var(--ink);
+  --fg: var(--offwhite);
+  --fg-2: rgba(250,248,245,.70);
+  --fg-3: rgba(250,248,245,.46);
+  --line: rgba(201,184,165,.15);
+  --line-2: rgba(201,184,165,.30);
+  --card: rgba(255,255,255,.030);
+  --card-2: rgba(255,255,255,.055);
+  --accent: var(--beige);
+  --btn-bg: var(--cream);
+  --btn-fg: #14100D;
+  --focus: var(--beige);
+  --shadow: 0 24px 60px rgba(0,0,0,.45);
+}
+.theme-charcoal { --bg: var(--charcoal); }
+.theme-light {
+  --bg: var(--cream);
+  --fg: #16110D;
+  --fg-2: rgba(22,17,13,.72);
+  --fg-3: rgba(22,17,13,.52);
+  --line: rgba(58,40,31,.14);
+  --line-2: rgba(58,40,31,.26);
+  --card: rgba(255,255,255,.72);
+  --card-2: #FFFFFF;
+  --accent: var(--brown);
+  --btn-bg: #16110D;
+  --btn-fg: var(--cream);
+  --focus: var(--brown-deep);
+  --shadow: 0 20px 50px rgba(58,40,31,.10);
+}
+.theme-light-alt { --bg: var(--offwhite); }
+.theme-beige { --bg: #EAE1D5; }
+
+/* ============================================================
+   3. BASE TYPOGRAPHY
+   ============================================================ */
+body {
+  font-family: var(--ff-sans);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.68;
+  color: var(--fg);
+  background: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 { font-weight: 400; line-height: 1.15; }
+
+.display {
+  font-family: var(--ff-display);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.03;
+  font-size: clamp(2.55rem, 6.2vw, 5rem);
+}
+.display em { font-style: italic; color: var(--accent); }
+
+.h2 {
+  font-family: var(--ff-display);
+  font-weight: 400;
+  letter-spacing: -0.012em;
+  line-height: 1.08;
+  font-size: clamp(2rem, 4.3vw, 3.35rem);
+}
+.h2 em { font-style: italic; color: var(--accent); }
+
+.h3 {
+  font-family: var(--ff-sans);
+  font-size: 1.075rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.4;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+  font-size: .69rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: currentColor;
+  opacity: .6;
+}
+
+.lead {
+  font-size: clamp(1.02rem, 1.35vw, 1.16rem);
+  color: var(--fg-2);
+  line-height: 1.72;
+  max-width: 62ch;
+}
+.body-text { color: var(--fg-2); }
+.muted { color: var(--fg-3); font-size: .875rem; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.skip-link {
+  position: absolute; left: 1rem; top: -100px; z-index: 200;
+  background: var(--cream); color: #14100D;
+  padding: .75rem 1.25rem; border-radius: 999px;
+  font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
+  transition: top .2s var(--ease);
+}
+.skip-link:focus { top: 1rem; }
+
+/* ============================================================
+   4. LAYOUT PRIMITIVES
+   ============================================================ */
+.container {
+  width: min(100% - 2.5rem, var(--container));
+  margin-inline: auto;
+}
+@media (min-width: 768px) {
+  .container { width: min(100% - 4rem, var(--container)); }
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+  background: var(--bg);
+  color: var(--fg);
+  overflow: hidden;
+  isolation: isolate;
+}
+.section > .container { position: relative; z-index: 2; }
+
+/* Ambient light — used sparingly on dark bands */
+.glow {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: .5;
+}
+
+/* Fine grain texture on dark bands */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.section-head { max-width: 780px; }
+.section-head .eyebrow { margin-bottom: 1.4rem; }
+.section-head .h2 { margin-bottom: 1.4rem; }
+.section-head--center { margin-inline: auto; text-align: center; }
+.section-head--center .lead { margin-inline: auto; }
+
+.rule { height: 1px; background: var(--line); border: 0; }
+
+/* ============================================================
+   5. BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem;
+  min-height: 54px;
+  padding: 0 1.75rem;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  transition: background-color .35s var(--ease), color .35s var(--ease),
+              border-color .35s var(--ease), transform .35s var(--ease),
+              box-shadow .35s var(--ease);
+  will-change: transform;
+}
+.btn svg { width: 15px; height: 15px; transition: transform .35s var(--ease); }
+.btn:hover svg { transform: translateX(4px); }
+
+.btn--primary { background: var(--btn-bg); color: var(--btn-fg); }
+.btn--primary:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(0,0,0,.32); }
+
+.btn--ghost { border-color: var(--line-2); color: var(--fg); background: transparent; }
+.btn--ghost:hover { border-color: var(--accent); background: var(--card-2); transform: translateY(-2px); }
+
+.btn--sm { min-height: 44px; padding: 0 1.25rem; font-size: .7rem; letter-spacing: .11em; }
+.btn--lg { min-height: 60px; padding: 0 2.25rem; }
+.btn--block { width: 100%; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: .9rem; }
+
+/* ============================================================
+   6. LOGO
+   Sized so an official logo (SVG or PNG) can drop straight in.
+   ============================================================ */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+  min-height: 40px;      /* reserved height for a future horizontal logo */
+  max-width: 260px;      /* reserved width  */
+  color: var(--offwhite);
+  transition: opacity .3s var(--ease);
+}
+.logo:hover { opacity: .78; }
+.logo__mark { flex: 0 0 auto; width: 32px; height: 32px; color: var(--beige); }
+.logo__mark svg { width: 100%; height: 100%; }
+.logo__word {
+  font-family: var(--ff-sans);
+  font-size: .96rem;
+  font-weight: 600;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding-left: .05em;
+}
+/* If you replace the mark + wordmark with a single image file */
+.logo img { height: 32px; width: auto; max-width: 260px; }
+
+.logo--footer .logo__mark { width: 36px; height: 36px; }
+.logo--footer .logo__word { font-size: 1.02rem; }
+
+/* ============================================================
+   7. NAVIGATION
+   ============================================================ */
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid transparent;
+  transition: background-color .4s var(--ease), border-color .4s var(--ease),
+              backdrop-filter .4s var(--ease), height .4s var(--ease);
+}
+.nav.is-scrolled,
+.nav.is-open {
+  background: rgba(11,10,9,.88);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border-bottom-color: rgba(201,184,165,.13);
+}
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: min(100% - 2.5rem, var(--container));
+  margin-inline: auto;
+}
+@media (min-width: 768px) {
+  .nav__inner { width: min(100% - 4rem, var(--container)); }
+}
+
+.nav__links { display: none; align-items: center; gap: 2.2rem; }
+.nav__links a {
+  position: relative;
+  font-size: .8rem;
+  font-weight: 400;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: rgba(250,248,245,.68);
+  padding-block: .35rem;
+  transition: color .3s var(--ease);
+}
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 1px;
+  background: var(--beige);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s var(--ease);
+}
+.nav__links a:hover, .nav__links a.is-active { color: var(--offwhite); }
+.nav__links a:hover::after, .nav__links a.is-active::after { transform: scaleX(1); }
+
+.nav__actions { display: flex; align-items: center; gap: .75rem; }
+.nav__cta { display: none; }
+
+.nav__toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 46px; height: 46px;
+  padding: 0 11px;
+  border: 1px solid rgba(201,184,165,.22);
+  border-radius: 999px;
+  transition: border-color .3s var(--ease);
+}
+.nav__toggle:hover { border-color: rgba(201,184,165,.5); }
+.nav__toggle span {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: var(--cream);
+  transition: transform .35s var(--ease), opacity .25s var(--ease);
+}
+.nav__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(3px) rotate(45deg); }
+.nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-3px) rotate(-45deg); }
+
+@media (min-width: 1000px) {
+  .nav__links { display: flex; }
+  .nav__cta { display: inline-flex; }
+  .nav__toggle { display: none; }
+}
+
+/* Mobile menu ---------------------------------------------------- */
+.mobile-menu {
+  position: fixed;
+  inset: var(--nav-h) 0 0 0;
+  z-index: 99;
+  background: rgba(11,10,9,.98);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  padding: 2.5rem 0 3rem;
+  overflow-y: auto;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity .35s var(--ease), transform .35s var(--ease), visibility .35s;
+}
+.mobile-menu.is-open {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.mobile-menu ul { display: flex; flex-direction: column; }
+.mobile-menu li { border-bottom: 1px solid rgba(201,184,165,.1); }
+.mobile-menu a.mobile-link {
+  display: block;
+  padding: 1.15rem 0;
+  font-family: var(--ff-display);
+  font-size: 1.85rem;
+  color: var(--cream);
+  transition: color .3s var(--ease), padding-left .3s var(--ease);
+}
+.mobile-menu a.mobile-link:hover { color: var(--beige); padding-left: .6rem; }
+.mobile-menu .btn { margin-top: 2rem; }
+.mobile-menu .muted { margin-top: 1.25rem; }
+@media (min-width: 1000px) { .mobile-menu { display: none; } }
+
+html.menu-open { overflow: hidden; }
+
+/* ============================================================
+   8. HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  padding-top: calc(var(--nav-h) + clamp(3rem, 7vw, 6rem));
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+  background: var(--ink);
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero__glow-a {
+  width: 780px; height: 780px;
+  left: -280px; top: -180px;
+  background: radial-gradient(circle, rgba(118,86,66,.42), transparent 68%);
+}
+.hero__glow-b {
+  width: 640px; height: 640px;
+  right: -220px; bottom: -300px;
+  background: radial-gradient(circle, rgba(201,184,165,.16), transparent 66%);
+}
+.hero__grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: clamp(3rem, 6vw, 4.5rem);
+  align-items: center;
+}
+@media (min-width: 1060px) {
+  .hero__grid { grid-template-columns: 1.02fr .98fr; gap: 4rem; }
+}
+.hero__copy .eyebrow { margin-bottom: 1.6rem; }
+.hero h1 { margin-bottom: 1.75rem; }
+.hero .lead { margin-bottom: 2.4rem; }
+.hero .btn-row { margin-bottom: 2.4rem; }
+
+.hero__trust {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  font-size: .74rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+.hero__trust .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--beige);
+  box-shadow: 0 0 0 4px rgba(201,184,165,.12);
+}
+
+/* ============================================================
+   9. HERO SIGNATURE — LEAD ENGINE CONSOLE
+   ============================================================ */
+.engine { position: relative; }
+.engine__glow {
+  position: absolute;
+  inset: 12% -6% -6% -6%;
+  background: radial-gradient(ellipse at 50% 40%, rgba(118,86,66,.35), transparent 70%);
+  filter: blur(60px);
+  z-index: 0;
+}
+.engine__frame {
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(201,184,165,.16);
+  border-radius: var(--r-lg);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.012)),
+    rgba(20,18,16,.86);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 40px 90px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.06);
+  overflow: hidden;
+}
+.engine__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .9rem 1.15rem;
+  border-bottom: 1px solid rgba(201,184,165,.12);
+  background: rgba(255,255,255,.02);
+}
+.engine__brand { display: inline-flex; align-items: center; gap: .55rem; min-height: 24px; }
+.engine__brand svg { width: 20px; height: 20px; color: var(--beige); }
+.engine__brand span {
+  font-size: .66rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(250,248,245,.72);
+}
+.engine__status {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: .62rem; letter-spacing: .16em; text-transform: uppercase;
+  color: rgba(250,248,245,.5);
+}
+.engine__pulse {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--beige);
+  animation: statusPulse 2.4s ease-in-out infinite;
+}
+@keyframes statusPulse {
+  0%, 100% { opacity: .35; box-shadow: 0 0 0 0 rgba(201,184,165,.35); }
+  50% { opacity: 1; box-shadow: 0 0 0 5px rgba(201,184,165,0); }
+}
+
+.engine__body { padding: 1.5rem 1.25rem 1.75rem; }
+@media (min-width: 480px) { .engine__body { padding: 1.75rem 1.6rem 2rem; } }
+
+.node {
+  border: 1px solid rgba(201,184,165,.14);
+  border-radius: var(--r-md);
+  background: rgba(255,255,255,.028);
+  padding: .95rem 1.1rem;
+  transition: border-color .4s var(--ease), background-color .4s var(--ease);
+}
+.node__top {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: .75rem; margin-bottom: .5rem;
+}
+.node__tag {
+  font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--beige);
+}
+.node__meta { font-size: .68rem; color: rgba(250,248,245,.42); letter-spacing: .04em; }
+.node__title { font-size: .95rem; font-weight: 500; color: var(--offwhite); }
+.node__chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .7rem; }
+.node__chips span {
+  font-size: .64rem;
+  letter-spacing: .05em;
+  padding: .3rem .55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201,184,165,.15);
+  color: rgba(250,248,245,.6);
+  background: rgba(255,255,255,.02);
+}
+.node--row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.node--row > span:first-child { font-size: .9rem; font-weight: 500; }
+.node--final {
+  border-color: rgba(201,184,165,.42);
+  background: linear-gradient(180deg, rgba(201,184,165,.13), rgba(201,184,165,.05));
+}
+.node--final > span:first-child { color: var(--cream); }
+
+/* Connecting wires with a travelling pulse */
+.wire {
+  position: relative;
+  width: 1px;
+  height: 26px;
+  margin-left: 26px;
+  background: linear-gradient(180deg, rgba(201,184,165,.06), rgba(201,184,165,.30), rgba(201,184,165,.06));
+}
+.wire::after {
+  content: "";
+  position: absolute;
+  left: -1.5px;
+  top: 0;
+  width: 4px; height: 14px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, transparent, var(--beige), transparent);
+  opacity: 0;
+  animation: wireFlow 3.6s var(--ease) infinite;
+}
+@keyframes wireFlow {
+  0%   { transform: translateY(-16px); opacity: 0; }
+  18%  { opacity: .95; }
+  82%  { opacity: .95; }
+  100% { transform: translateY(30px); opacity: 0; }
+}
+/* Cascade the pulse down the console, one stage at a time */
+.engine__body > .wire:nth-child(3)::after  { animation-delay: 0s; }
+.engine__body > .wire:nth-child(5)::after  { animation-delay: .5s; }
+.engine__body > .wire:nth-child(7)::after  { animation-delay: 1s; }
+.engine__body > .wire:nth-child(9)::after  { animation-delay: 1.5s; }
+.engine__body > .wire:nth-child(11)::after { animation-delay: 2s; }
+
+.triage { display: grid; grid-template-columns: repeat(3, 1fr); gap: .55rem; }
+.tier {
+  display: flex; align-items: center; justify-content: center; gap: .45rem;
+  padding: .6rem .4rem;
+  border-radius: var(--r-sm);
+  border: 1px solid rgba(201,184,165,.13);
+  background: rgba(255,255,255,.022);
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(250,248,245,.55);
+}
+.tier i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex: 0 0 auto; }
+.tier--hot {
+  color: #D08C6E;
+  border-color: rgba(180,85,58,.45);
+  background: rgba(180,85,58,.12);
+  animation: tierPulse 3.6s ease-in-out infinite;
+}
+@keyframes tierPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(180,85,58,0); }
+  50% { box-shadow: 0 0 22px 0 rgba(180,85,58,.28); }
+}
+.tier--warm { color: #C4A067; border-color: rgba(169,130,63,.32); }
+.tier--cold { color: #9C978F; }
+
+/* ============================================================
+   10. PROBLEM
+   ============================================================ */
+.problem__grid { display: grid; gap: clamp(2.5rem, 5vw, 4.5rem); }
+@media (min-width: 980px) { .problem__grid { grid-template-columns: .92fr 1.08fr; } }
+
+.friction { border-top: 1px solid var(--line); }
+.friction li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  padding: 1.35rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.friction .idx {
+  font-family: var(--ff-display);
+  font-size: 1.05rem;
+  color: var(--accent);
+  line-height: 1.5;
+  opacity: .8;
+  min-width: 2ch;
+}
+.friction .h3 { margin-bottom: .3rem; }
+.friction p { font-size: .93rem; color: var(--fg-2); }
+
+.problem__note {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--card);
+}
+.problem__note p {
+  font-family: var(--ff-display);
+  font-size: clamp(1.3rem, 2.4vw, 1.85rem);
+  line-height: 1.35;
+  color: var(--fg);
+  max-width: 68ch;
+}
+.problem__note em { font-style: italic; color: var(--accent); }
+
+/* ============================================================
+   11. HOW IT WORKS
+   ============================================================ */
+.steps { display: grid; gap: 1.25rem; margin-top: clamp(2.5rem, 5vw, 4rem); }
+@media (min-width: 640px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1080px) { .steps { grid-template-columns: repeat(4, 1fr); gap: 1rem; } }
+
+.step {
+  position: relative;
+  padding: 2rem 1.6rem 2.1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--card);
+  overflow: hidden;
+  transition: border-color .45s var(--ease), transform .45s var(--ease), background-color .45s var(--ease);
+}
+.step:hover { border-color: var(--line-2); transform: translateY(-4px); background: var(--card-2); }
+.step__num {
+  font-family: var(--ff-display);
+  font-size: 3.4rem;
+  line-height: 1;
+  color: var(--accent);
+  opacity: .42;
+  margin-bottom: 1.4rem;
+  letter-spacing: -0.02em;
+}
+.step__label {
+  font-size: .68rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--fg);
+  margin-bottom: .7rem;
+}
+.step p { font-size: .93rem; color: var(--fg-2); }
+
+/* ============================================================
+   12. FEATURES
+   ============================================================ */
+.features {
+  display: grid;
+  gap: 1rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+}
+.feature {
+  position: relative;
+  padding: 1.9rem 1.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--card);
+  overflow: hidden;
+  transition: border-color .45s var(--ease), transform .45s var(--ease), box-shadow .45s var(--ease);
+}
+.feature::before {
+  content: "";
+  position: absolute;
+  inset: -40% 55% 55% -40%;
+  background: radial-gradient(circle, rgba(201,184,165,.14), transparent 65%);
+  opacity: 0;
+  transition: opacity .5s var(--ease);
+  pointer-events: none;
+}
+.feature:hover { border-color: var(--line-2); transform: translateY(-4px); box-shadow: var(--shadow); }
+.feature:hover::before { opacity: 1; }
+.feature__icon {
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  color: var(--accent);
+  margin-bottom: 1.3rem;
+}
+.feature__icon svg { width: 19px; height: 19px; }
+.feature .h3 { margin-bottom: .55rem; }
+.feature p { font-size: .91rem; color: var(--fg-2); }
+
+/* ============================================================
+   13. AUTOMATION WORKFLOW
+   ============================================================ */
+.flow {
+  display: grid;
+  gap: 2.6rem;
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  grid-template-columns: 1fr;
+  max-width: 420px;
+  margin-inline: auto;
+}
+.flow__stage {
+  position: relative;
+  text-align: center;
+  padding: 1.4rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--card);
+  transition: border-color .45s var(--ease), background-color .45s var(--ease);
+}
+.flow__stage:hover { border-color: var(--line-2); background: var(--card-2); }
+.flow__stage--brand {
+  border-color: rgba(201,184,165,.45);
+  background: linear-gradient(180deg, rgba(201,184,165,.12), rgba(201,184,165,.03));
+}
+.flow__name {
+  font-size: .74rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--fg);
+  margin-bottom: .5rem;
+}
+.flow__stage--brand .flow__name {
+  font-weight: 600;
+  letter-spacing: .24em;
+  color: var(--cream);
+}
+.flow__desc { font-size: .78rem; color: var(--fg-3); line-height: 1.5; }
+.flow__tiers { display: flex; flex-direction: column; gap: .35rem; margin-top: .85rem; }
+.flow__tier {
+  font-size: .63rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  padding: .32rem .5rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+}
+.flow__tier--hot { color: #D08C6E; border-color: rgba(180,85,58,.4); background: rgba(180,85,58,.1); }
+.flow__tier--warm { color: #C4A067; border-color: rgba(169,130,63,.3); background: rgba(169,130,63,.08); }
+.flow__tier--cold { color: #9C978F; }
+
+/* Connector (vertical by default) */
+.flow__stage:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 50%; bottom: -2.6rem;
+  width: 1px; height: 2.6rem;
+  background: linear-gradient(180deg, rgba(201,184,165,.35), rgba(201,184,165,.08));
+}
+.flow__stage:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: calc(50% - 2.5px); bottom: -2.6rem;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--beige);
+  box-shadow: 0 0 10px rgba(201,184,165,.7);
+  animation: dotY 3.4s var(--ease) infinite;
+  z-index: 2;
+}
+@keyframes dotY {
+  0% { transform: translateY(0); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateY(2.6rem); opacity: 0; }
+}
+.flow__stage:nth-child(1)::before { animation-delay: 0s; }
+.flow__stage:nth-child(2)::before { animation-delay: .5s; }
+.flow__stage:nth-child(3)::before { animation-delay: 1s; }
+.flow__stage:nth-child(4)::before { animation-delay: 1.5s; }
+.flow__stage:nth-child(5)::before { animation-delay: 2s; }
+
+@media (min-width: 1024px) {
+  .flow {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.6rem;
+    max-width: none;
+    align-items: start;
+  }
+  .flow__stage { padding: 1.5rem .9rem; }
+  .flow__stage:not(:last-child)::after {
+    left: auto; right: -1.6rem; top: 46px; bottom: auto;
+    width: 1.6rem; height: 1px;
+    background: linear-gradient(90deg, rgba(201,184,165,.35), rgba(201,184,165,.08));
+  }
+  .flow__stage:not(:last-child)::before {
+    left: auto; right: -1.6rem; top: 43.5px; bottom: auto;
+    animation-name: dotX;
+  }
+  @keyframes dotX {
+    0% { transform: translateX(0); opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { transform: translateX(1.6rem); opacity: 0; }
+  }
+}
+
+.flow__caption {
+  margin-top: clamp(2.5rem, 4vw, 3.5rem);
+  text-align: center;
+  font-size: .88rem;
+  color: var(--fg-3);
+  max-width: 60ch;
+  margin-inline: auto;
+}
+
+/* ============================================================
+   14. BENEFITS
+   ============================================================ */
+.benefits__grid { display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
+@media (min-width: 980px) { .benefits__grid { grid-template-columns: .85fr 1.15fr; align-items: start; } }
+@media (min-width: 980px) { .benefits__aside { position: sticky; top: calc(var(--nav-h) + 3rem); } }
+
+.benefit-list { border-top: 1px solid var(--line); }
+.benefit {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.25rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding-left .4s var(--ease);
+}
+.benefit:hover { padding-left: .5rem; }
+.benefit__mark {
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  border: 1px solid var(--line-2);
+  border-radius: 50%;
+  color: var(--accent);
+  margin-top: .15rem;
+}
+.benefit__mark svg { width: 12px; height: 12px; }
+.benefit h3 { margin-bottom: .3rem; }
+.benefit p { font-size: .93rem; color: var(--fg-2); }
+
+/* ============================================================
+   15. BEFORE / AFTER
+   ============================================================ */
+.compare {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  align-items: stretch;
+}
+@media (min-width: 940px) {
+  .compare { grid-template-columns: 1fr auto 1fr; gap: 1.25rem; }
+}
+.panel {
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--card);
+}
+.panel--after {
+  border-color: rgba(201,184,165,.32);
+  background: linear-gradient(180deg, rgba(201,184,165,.08), rgba(201,184,165,.02));
+}
+.panel__label {
+  font-size: .68rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin-bottom: .5rem;
+}
+.panel--after .panel__label { color: var(--accent); }
+.panel__title {
+  font-family: var(--ff-display);
+  font-size: 1.6rem;
+  margin-bottom: 1.75rem;
+}
+
+.chain li {
+  position: relative;
+  padding: 0 0 1.5rem 1.9rem;
+  font-size: .93rem;
+  color: var(--fg-2);
+}
+.chain li:last-child { padding-bottom: 0; }
+.chain li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: .55rem;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--line-2);
+  background: var(--bg);
+}
+.chain li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 3.5px; top: 1.2rem;
+  width: 1px; height: calc(100% - 1.1rem);
+  background: var(--line);
+}
+.panel--before .chain li:last-child { color: var(--fg-3); font-style: italic; }
+.panel--after .chain li::before {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(201,184,165,.12);
+}
+.panel--after .chain li:last-child { color: var(--fg); font-weight: 500; }
+
+.compare__divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.compare__divider span {
+  font-size: .64rem;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  white-space: nowrap;
+}
+.compare__divider::before, .compare__divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+@media (min-width: 940px) {
+  .compare__divider { flex-direction: column; width: 90px; }
+  .compare__divider span { writing-mode: vertical-rl; letter-spacing: .3em; }
+  .compare__divider::before, .compare__divider::after { width: 1px; height: auto; flex: 1; }
+}
+
+/* ============================================================
+   16. AUDIENCE
+   ============================================================ */
+.audience {
+  display: grid;
+  gap: 1rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.audience-card {
+  padding: 2rem 1.7rem 2.1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--card);
+  transition: border-color .45s var(--ease), transform .45s var(--ease), background-color .45s var(--ease);
+}
+.audience-card:hover { border-color: var(--line-2); transform: translateY(-4px); background: var(--card-2); }
+.audience-card__mark {
+  font-family: var(--ff-display);
+  font-size: 1.5rem;
+  color: var(--accent);
+  opacity: .55;
+  margin-bottom: 1.5rem;
+}
+.audience-card .h3 { margin-bottom: .55rem; }
+.audience-card p { font-size: .91rem; color: var(--fg-2); }
+
+/* ============================================================
+   17. INTEGRATIONS
+   ============================================================ */
+.integrations {
+  display: grid;
+  gap: .9rem;
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.integration {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  padding: 1.15rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--card);
+  transition: border-color .45s var(--ease), transform .45s var(--ease);
+}
+.integration:hover { border-color: var(--line-2); transform: translateY(-3px); }
+.integration__mono {
+  flex: 0 0 auto;
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border: 1px solid var(--line-2);
+  border-radius: 9px;
+  font-family: var(--ff-display);
+  font-size: 1.15rem;
+  color: var(--accent);
+}
+.integration__name { font-size: .92rem; font-weight: 500; line-height: 1.3; }
+.integration__role { font-size: .78rem; color: var(--fg-3); }
+
+/* ============================================================
+   18. WHY CLOSATIX
+   ============================================================ */
+.why__grid { display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
+@media (min-width: 980px) { .why__grid { grid-template-columns: 1.05fr .95fr; align-items: start; } }
+.why__points { display: grid; gap: 1.5rem; }
+.why__point {
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--line-2);
+}
+.why__point h3 { margin-bottom: .35rem; }
+.why__point p { font-size: .93rem; color: var(--fg-2); }
+
+/* ============================================================
+   19. CTA PANELS
+   ============================================================ */
+.cta-panel {
+  position: relative;
+  padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border: 1px solid rgba(201,184,165,.2);
+  border-radius: var(--r-lg);
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(118,86,66,.5), transparent 62%),
+    radial-gradient(ellipse at 85% 100%, rgba(201,184,165,.16), transparent 58%),
+    linear-gradient(160deg, #1B1512, #0C0B0A 70%);
+  text-align: center;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 40px 100px rgba(0,0,0,.5);
+}
+.cta-panel .eyebrow { margin-bottom: 1.5rem; }
+.cta-panel .h2 { margin-bottom: 1.4rem; }
+.cta-panel .lead { margin-inline: auto; margin-bottom: 2.4rem; }
+.cta-panel .btn-row { justify-content: center; }
+.cta-panel__sub {
+  margin-top: 1.6rem;
+  font-size: .74rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(250,248,245,.42);
+}
+
+.final-cta { text-align: center; }
+.final-cta .h2 { margin-bottom: 1.6rem; max-width: 20ch; margin-inline: auto; }
+.final-cta .lead { margin-inline: auto; margin-bottom: 2.4rem; }
+.final-cta .btn-row { justify-content: center; }
+
+/* ============================================================
+   20. FAQ
+   ============================================================ */
+.faq { margin-top: clamp(2.5rem, 5vw, 4rem); border-top: 1px solid var(--line); }
+.faq__item { border-bottom: 1px solid var(--line); }
+.faq__trigger {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+  padding: 1.5rem 0;
+  text-align: left;
+  font-family: var(--ff-display);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.3;
+  color: var(--fg);
+  transition: color .3s var(--ease);
+}
+.faq__trigger:hover { color: var(--accent); }
+.faq__icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 26px; height: 26px;
+  margin-top: .2rem;
+  border: 1px solid var(--line-2);
+  border-radius: 50%;
+  transition: border-color .3s var(--ease), transform .4s var(--ease);
+}
+.faq__icon::before, .faq__icon::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  background: var(--accent);
+  transform: translate(-50%, -50%);
+  transition: opacity .3s var(--ease), transform .4s var(--ease);
+}
+.faq__icon::before { width: 10px; height: 1px; }
+.faq__icon::after { width: 1px; height: 10px; }
+.faq__trigger[aria-expanded="true"] .faq__icon { border-color: var(--accent); transform: rotate(90deg); }
+.faq__trigger[aria-expanded="true"] .faq__icon::after { opacity: 0; }
+.faq__panel {
+  overflow: hidden;
+  max-height: 0;
+  visibility: hidden;
+  transition: max-height .45s var(--ease), visibility .45s;
+}
+.faq__panel.is-open { visibility: visible; }
+.faq__panel p {
+  padding: 0 3rem 1.75rem 0;
+  font-size: .95rem;
+  color: var(--fg-2);
+  max-width: 72ch;
+}
+
+/* ============================================================
+   21. FOOTER
+   ============================================================ */
+.footer {
+  position: relative;
+  background: var(--ink);
+  color: var(--offwhite);
+  padding-top: clamp(3.5rem, 6vw, 5.5rem);
+  border-top: 1px solid rgba(201,184,165,.12);
+  overflow: hidden;
+  isolation: isolate;
+}
+.footer__grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 2.75rem;
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+@media (min-width: 860px) {
+  .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; gap: 3rem; }
+}
+.footer__brand p {
+  margin-top: 1.3rem;
+  font-size: .93rem;
+  color: rgba(250,248,245,.6);
+  max-width: 34ch;
+}
+.footer__col h3 {
+  font-size: .68rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(250,248,245,.45);
+  margin-bottom: 1.15rem;
+}
+.footer__col li { margin-bottom: .7rem; }
+.footer__col a {
+  font-size: .92rem;
+  color: rgba(250,248,245,.72);
+  transition: color .3s var(--ease);
+}
+.footer__col a:hover { color: var(--beige); }
+
+.footer__bottom {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.6rem;
+  border-top: 1px solid rgba(201,184,165,.12);
+  font-size: .8rem;
+  color: rgba(250,248,245,.42);
+}
+.footer__legal { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+.footer__legal a { transition: color .3s var(--ease); }
+.footer__legal a:hover { color: var(--beige); }
+
+/* ============================================================
+   22. SCROLL REVEAL
+   ============================================================ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .85s var(--ease), transform .85s var(--ease);
+}
+[data-reveal].is-visible { opacity: 1; transform: none; }
+.stagger > *:nth-child(2)  { transition-delay: .06s; }
+.stagger > *:nth-child(3)  { transition-delay: .12s; }
+.stagger > *:nth-child(4)  { transition-delay: .18s; }
+.stagger > *:nth-child(5)  { transition-delay: .24s; }
+.stagger > *:nth-child(6)  { transition-delay: .30s; }
+.stagger > *:nth-child(7)  { transition-delay: .36s; }
+.stagger > *:nth-child(8)  { transition-delay: .42s; }
+
+/* ============================================================
+   23. REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+  [data-reveal] { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   24. SMALL SCREEN REFINEMENTS
+   ============================================================ */
+@media (max-width: 520px) {
+  .btn { width: 100%; }
+  .btn--sm { width: auto; }
+  .btn-row { flex-direction: column; align-items: stretch; }
+  .cta-panel .btn-row, .final-cta .btn-row { align-items: stretch; }
+  .node--row { flex-direction: column; align-items: flex-start; gap: .3rem; }
+  .faq__panel p { padding-right: 0; }
+  .triage { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body id="top">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<header class="nav" id="site-nav">
+  <div class="nav__inner">
+
+    <!-- REPLACE WITH OFFICIAL CLOSATIX LOGO -->
+    <!-- Swap everything between this comment and /REPLACE for your logo, e.g.
+         <a class="logo" href="#top" aria-label="CLOSATIX home">
+           <img src="closatix-logo.svg" alt="CLOSATIX">
+         </a>
+         The .logo rules reserve 32-40px height and up to 260px width,
+         so the nav layout will not break. -->
+    <a class="logo" href="#top" aria-label="CLOSATIX home">
+      <span class="logo__mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" focusable="false">
+          <rect x="7" y="7" width="26" height="26" rx="6" transform="rotate(45 20 20)"
+                fill="none" stroke="currentColor" stroke-width="1.1" opacity=".5"/>
+          <path d="M26.2 13.9a8.7 8.7 0 1 0 0 12.2" fill="none" stroke="currentColor"
+                stroke-width="1.9" stroke-linecap="round"/>
+          <circle cx="27.5" cy="20" r="2.2" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="logo__word">Closatix</span>
+    </a>
+    <!-- /REPLACE WITH OFFICIAL CLOSATIX LOGO -->
+
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#solutions">Solutions</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="nav__actions">
+      <!-- DEMO LINK: replace YOUR_DEMO_BOOKING_LINK everywhere with your booking URL -->
+      <a class="btn btn--primary btn--sm nav__cta" href="YOUR_DEMO_BOOKING_LINK">Book a Demo</a>
+      <button class="nav__toggle" id="nav-toggle" type="button"
+              aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="container">
+    <nav aria-label="Mobile">
+      <ul>
+        <li><a class="mobile-link" href="#solutions">Solutions</a></li>
+        <li><a class="mobile-link" href="#how-it-works">How It Works</a></li>
+        <li><a class="mobile-link" href="#benefits">Benefits</a></li>
+        <li><a class="mobile-link" href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--primary btn--block" href="YOUR_DEMO_BOOKING_LINK">Book a Demo</a>
+    <p class="muted">Built for modern real estate teams.</p>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="glow hero__glow-a" aria-hidden="true"></div>
+    <div class="glow hero__glow-b" aria-hidden="true"></div>
+
+    <div class="container hero__grid">
+
+      <div class="hero__copy">
+        <p class="eyebrow" data-reveal>AI Lead Automation for Real Estate</p>
+        <h1 class="display" id="hero-title" data-reveal>
+          Your best leads shouldn't be <em>waiting in an inbox.</em>
+        </h1>
+        <p class="lead" data-reveal>
+          CLOSATIX captures, qualifies, organizes and follows up with your incoming real estate
+          leads automatically — so your team spends its hours on the opportunities that are
+          actually ready to move.
+        </p>
+        <div class="btn-row" data-reveal>
+          <a class="btn btn--primary btn--lg" href="YOUR_DEMO_BOOKING_LINK">
+            Book a Demo
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <path d="M2 8h11M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="btn btn--ghost btn--lg" href="#how-it-works">See How It Works</a>
+        </div>
+        <p class="hero__trust" data-reveal>
+          <span class="dot" aria-hidden="true"></span>
+          Built for modern real estate teams
+        </p>
+      </div>
+
+      <!-- Signature element: the Lead Engine console -->
+      <div class="engine" data-reveal>
+        <div class="engine__glow" aria-hidden="true"></div>
+        <div class="engine__frame">
+
+          <div class="engine__bar">
+            <!-- REPLACE WITH OFFICIAL CLOSATIX LOGO (compact mark) -->
+            <span class="engine__brand">
+              <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <rect x="7" y="7" width="26" height="26" rx="6" transform="rotate(45 20 20)"
+                      fill="none" stroke="currentColor" stroke-width="1.1" opacity=".5"/>
+                <path d="M26.2 13.9a8.7 8.7 0 1 0 0 12.2" fill="none" stroke="currentColor"
+                      stroke-width="1.9" stroke-linecap="round"/>
+                <circle cx="27.5" cy="20" r="2.2" fill="currentColor"/>
+              </svg>
+              <span>Closatix Lead Engine</span>
+            </span>
+            <!-- /REPLACE WITH OFFICIAL CLOSATIX LOGO -->
+            <span class="engine__status"><span class="engine__pulse" aria-hidden="true"></span>Workflow active</span>
+          </div>
+
+          <div class="engine__body">
+            <p class="sr-only">
+              Illustration of the CLOSATIX workflow: a new lead is captured, qualified by AI as hot,
+              warm or cold, written to the CRM, routed into the matching follow-up, and guided toward
+              a booked appointment.
+            </p>
+
+            <div class="node" aria-hidden="true">
+              <div class="node__top">
+                <span class="node__tag">01 — Capture</span>
+                <span class="node__meta">New lead</span>
+              </div>
+              <div class="node__title">Inquiry received</div>
+              <div class="node__chips"><span>Website form</span><span>Buyer</span><span>Waterfront district</span></div>
+            </div>
+
+            <div class="wire" aria-hidden="true"></div>
+
+            <div class="node" aria-hidden="true">
+              <div class="node__top">
+                <span class="node__tag">02 — Qualify</span>
+                <span class="node__meta">AI review</span>
+              </div>
+              <div class="node__title">Lead qualification</div>
+              <div class="node__chips"><span>Intent</span><span>Budget</span><span>Timeline</span><span>Financing</span></div>
+            </div>
+
+            <div class="wire" aria-hidden="true"></div>
+
+            <div class="triage" aria-hidden="true">
+              <span class="tier tier--hot"><i></i>Hot</span>
+              <span class="tier tier--warm"><i></i>Warm</span>
+              <span class="tier tier--cold"><i></i>Cold</span>
+            </div>
+
+            <div class="wire" aria-hidden="true"></div>
+
+            <div class="node node--row" aria-hidden="true">
+              <span>CRM updated</span>
+              <span class="node__meta">Record synced</span>
+            </div>
+
+            <div class="wire" aria-hidden="true"></div>
+
+            <div class="node node--row" aria-hidden="true">
+              <span>Follow-up started</span>
+              <span class="node__meta">Priority sequence</span>
+            </div>
+
+            <div class="wire" aria-hidden="true"></div>
+
+            <div class="node node--row node--final" aria-hidden="true">
+              <span>Appointment booked</span>
+              <span class="node__meta">Confirmation sent</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROBLEM
+       ============================================================ -->
+  <section class="section theme-dark theme-charcoal grain" aria-labelledby="problem-title">
+    <div class="glow" aria-hidden="true" style="width:520px;height:520px;right:-180px;top:-120px;background:radial-gradient(circle,rgba(118,86,66,.30),transparent 68%);"></div>
+    <div class="container">
+      <div class="problem__grid">
+
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">The Real Bottleneck</p>
+          <h2 class="h2" id="problem-title">
+            Most real estate teams don't need more software.<br>
+            They need <em>faster action.</em>
+          </h2>
+          <p class="lead">
+            None of the following is a people problem. It's what happens when lead volume grows
+            faster than the process behind it — and every one of these steps still runs on
+            someone's attention.
+          </p>
+        </div>
+
+        <ul class="friction stagger">
+          <li data-reveal>
+            <span class="idx">01</span>
+            <div>
+              <h3 class="h3">Leads arrive from everywhere</h3>
+              <p>Website forms, landing pages, portals, ad campaigns and referrals — each in a different format, each needing a different next step.</p>
+            </div>
+          </li>
+          <li data-reveal>
+            <span class="idx">02</span>
+            <div>
+              <h3 class="h3">Every inquiry waits for a human to read it</h3>
+              <p>Before anyone can act, someone has to open the message, interpret it and decide what it's worth.</p>
+            </div>
+          </li>
+          <li data-reveal>
+            <span class="idx">03</span>
+            <div>
+              <h3 class="h3">Follow-up happens later than intended</h3>
+              <p>Showings, calls and paperwork fill the day. The response goes out when there's time, not when the interest is highest.</p>
+            </div>
+          </li>
+          <li data-reveal>
+            <span class="idx">04</span>
+            <div>
+              <h3 class="h3">Serious buyers sit next to casual browsers</h3>
+              <p>Without a consistent qualification step, a financing-ready prospect looks the same in the inbox as a general question.</p>
+            </div>
+          </li>
+          <li data-reveal>
+            <span class="idx">05</span>
+            <div>
+              <h3 class="h3">CRM records drift out of date</h3>
+              <p>Manual entry is inconsistent by nature. Fields get skipped, notes stay in someone's head, reporting loses its meaning.</p>
+            </div>
+          </li>
+          <li data-reveal>
+            <span class="idx">06</span>
+            <div>
+              <h3 class="h3">Opportunities quietly disappear</h3>
+              <p>Nobody decides to drop a lead. It simply moves down the list until it stops being visible.</p>
+            </div>
+          </li>
+          <li data-reveal>
+            <span class="idx">07</span>
+            <div>
+              <h3 class="h3">Administration replaces selling</h3>
+              <p>Copying, sorting, tagging and chasing take the hours that should go to conversations with clients.</p>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="problem__note" data-reveal>
+        <p>
+          CLOSATIX takes those disconnected steps and runs them as <em>one workflow</em> — from the
+          moment a lead arrives to the moment it's on someone's calendar.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOW IT WORKS
+       ============================================================ -->
+  <section class="section theme-light" id="how-it-works" aria-labelledby="how-title">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">How It Works</p>
+        <h2 class="h2" id="how-title">Four steps. One uninterrupted path.</h2>
+        <p class="lead">
+          The sequence below runs on every incoming lead, in the same order, every time — without
+          anyone having to start it.
+        </p>
+      </div>
+
+      <div class="steps stagger">
+        <article class="step" data-reveal>
+          <div class="step__num">01</div>
+          <h3 class="step__label">Capture</h3>
+          <p>Incoming leads enter the automated workflow from your website, landing pages, forms, booking pages and other connected sources — in one consistent structure.</p>
+        </article>
+        <article class="step" data-reveal>
+          <div class="step__num">02</div>
+          <h3 class="step__label">Qualify</h3>
+          <p>AI reads the relevant details — intent, property type, location, budget, timeline and financing status — and determines whether the opportunity is Hot, Warm or Cold.</p>
+        </article>
+        <article class="step" data-reveal>
+          <div class="step__num">03</div>
+          <h3 class="step__label">Automate</h3>
+          <p>CRM records are created or updated, the right people are notified, and follow-up begins in the form that matches the lead's readiness.</p>
+        </article>
+        <article class="step" data-reveal>
+          <div class="step__num">04</div>
+          <h3 class="step__label">Act</h3>
+          <p>Your team opens the day knowing exactly where to focus, while qualified prospects are guided toward booking the next conversation.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEATURES / SOLUTIONS
+       ============================================================ -->
+  <section class="section theme-light theme-light-alt" id="solutions" aria-labelledby="solutions-title">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">The Lead Engine</p>
+        <h2 class="h2" id="solutions-title">One lead engine.<br>Every critical step <em>connected.</em></h2>
+        <p class="lead">
+          Each capability below removes a task your team is doing by hand today — and hands back the
+          time it was taking.
+        </p>
+      </div>
+
+      <div class="features stagger">
+
+        <article class="feature" data-reveal>
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3.2"/><path d="M12 2.6v5.2M12 16.2v5.2M2.6 12h5.2M16.2 12h5.2"/>
+            </svg>
+          </div>
+          <h3 class="h3">AI Lead Qualification</h3>
+          <p>Know which inquiries deserve a call today and which need nurturing, before anyone opens the inbox. High-intent opportunities stop hiding behind general questions.</p>
+        </article>
+
+        <article class="feature" data-reveal>
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6"/><path d="M4.5 12v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6"/>
+            </svg>
+          </div>
+          <h3 class="h3">CRM Automation</h3>
+          <p>Your pipeline stays accurate without anyone retyping it. Lead details are written and updated automatically, so reporting reflects reality instead of memory.</p>
+        </article>
+
+        <article class="feature" data-reveal>
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.5 12.4c0 3.9-3.8 7-8.5 7-1 0-2-.15-2.9-.42L3.5 20.5l1.6-4.2A6.6 6.6 0 0 1 3.5 12.4c0-3.9 3.8-7 8.5-7s8.5 3.1 8.5 7z"/><path d="M9 12h6"/>
+            </svg>
+          </div>
+          <h3 class="h3">Smart Follow-Up</h3>
+          <p>Every lead gets a response that fits where they actually are. Ready buyers move quickly; longer-horizon prospects stay engaged instead of going cold.</p>
+        </article>
+
+        <article class="feature" data-reveal>
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 12h5"/><path d="M9 12c3.5 0 3.5-6 7-6h4"/><path d="M9 12c3.5 0 3.5 6 7 6h4"/><path d="M17.5 3.5 20 6l-2.5 2.5"/><path d="M17.5 15.5 20 18l-2.5 2.5"/>
+            </svg>
+          </div>
+          <h3 class="h3">Hot / Warm / Cold Routing</h3>
+          <p>One classification changes what happens next. Different lead categories trigger different workflows, so priority is built into the process rather than decided ad hoc.</p>
+        </article>
+
+        <article class="feature" data-reveal>
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/><path d="m9.5 14 1.8 1.8 3.4-3.6"/>
+            </svg>
+          </div>
+          <h3 class="h3">Appointment Booking</h3>
+          <p>Qualified prospects are guided straight to scheduling, so interest turns into a calendar entry while the conversation is still warm.</p>
+        </article>
+
+        <article class="feature" data-reveal>
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 12a8 8 0 0 1-13.7 5.6L4 15.4"/><path d="M4 12a8 8 0 0 1 13.7-5.6L20 8.6"/><path d="M4 20v-4.6h4.6M20 4v4.6h-4.6"/>
+            </svg>
+          </div>
+          <h3 class="h3">Booking Sync</h3>
+          <p>Booking status, meeting date, meeting link and lead source stay attached to the lead record — no separate spreadsheet to reconcile before a meeting.</p>
+        </article>
+
+        <article class="feature" data-reveal>
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 9a6 6 0 1 0-12 0c0 5-2 6.5-2 6.5h16S18 14 18 9z"/><path d="M10.3 19a2 2 0 0 0 3.4 0"/>
+            </svg>
+          </div>
+          <h3 class="h3">Team Notifications</h3>
+          <p>The right person hears about the right lead immediately — with the context they need to act, not just an alert that something arrived.</p>
+        </article>
+
+        <article class="feature" data-reveal>
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="m3 7 9 6 9-6"/>
+            </svg>
+          </div>
+          <h3 class="h3">Automated Email Communication</h3>
+          <p>Confirmations and follow-up messages go out consistently and on brand, so every prospect gets the same professional experience regardless of how busy the week is.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       AUTOMATION WORKFLOW
+       ============================================================ -->
+  <section class="section theme-dark grain" aria-labelledby="workflow-title">
+    <div class="glow" aria-hidden="true" style="width:720px;height:720px;left:50%;top:-20%;transform:translateX(-50%);background:radial-gradient(circle,rgba(118,86,66,.32),transparent 66%);"></div>
+    <div class="container">
+      <div class="section-head section-head--center" data-reveal>
+        <p class="eyebrow">The Workflow</p>
+        <h2 class="h2" id="workflow-title">Six separate tasks become <em>one path.</em></h2>
+        <p class="lead">
+          The same journey every lead takes — from the source it arrived through to a confirmed
+          appointment, without a manual handover between stages.
+        </p>
+      </div>
+
+      <div class="flow stagger">
+
+        <article class="flow__stage" data-reveal>
+          <h3 class="flow__name">Lead Source</h3>
+          <p class="flow__desc">Website, landing page, form or booking page.</p>
+        </article>
+
+        <article class="flow__stage flow__stage--brand" data-reveal>
+          <h3 class="flow__name">Closatix</h3>
+          <p class="flow__desc">The engine receives and structures every inquiry.</p>
+        </article>
+
+        <article class="flow__stage" data-reveal>
+          <h3 class="flow__name">AI Qualification</h3>
+          <p class="flow__desc">Intent, budget, timeline and financing reviewed.</p>
+          <div class="flow__tiers" aria-hidden="true">
+            <span class="flow__tier flow__tier--hot">Hot</span>
+            <span class="flow__tier flow__tier--warm">Warm</span>
+            <span class="flow__tier flow__tier--cold">Cold</span>
+          </div>
+        </article>
+
+        <article class="flow__stage" data-reveal>
+          <h3 class="flow__name">CRM</h3>
+          <p class="flow__desc">Record created or updated with the full context.</p>
+        </article>
+
+        <article class="flow__stage" data-reveal>
+          <h3 class="flow__name">Smart Follow-Up</h3>
+          <p class="flow__desc">Priority outreach, nurturing or scheduled re-engagement.</p>
+        </article>
+
+        <article class="flow__stage" data-reveal>
+          <h3 class="flow__name">Appointment</h3>
+          <p class="flow__desc">Booking confirmed and synced back to the lead.</p>
+        </article>
+
+      </div>
+
+      <p class="flow__caption" data-reveal>
+        Hot, Warm and Cold aren't labels for a report. Each one sends the lead down a different
+        route through the rest of the workflow.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BENEFITS
+       ============================================================ -->
+  <section class="section theme-light" id="benefits" aria-labelledby="benefits-title">
+    <div class="container">
+      <div class="benefits__grid">
+
+        <div class="benefits__aside section-head" data-reveal>
+          <p class="eyebrow">Benefits</p>
+          <h2 class="h2" id="benefits-title">Give your team back its most valuable resource: <em>time.</em></h2>
+          <p class="lead">
+            Automation is only worth it if you can feel the difference in the working day. These are
+            the changes clients notice first.
+          </p>
+        </div>
+
+        <ul class="benefit-list stagger">
+          <li class="benefit" data-reveal>
+            <span class="benefit__mark" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3.2L13 4.8"/></svg>
+            </span>
+            <div>
+              <h3 class="h3">Faster lead response</h3>
+              <p>Reach people while the inquiry is still front of mind, instead of hours later when they've already moved on to the next listing.</p>
+            </div>
+          </li>
+          <li class="benefit" data-reveal>
+            <span class="benefit__mark" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3.2L13 4.8"/></svg>
+            </span>
+            <div>
+              <h3 class="h3">Clear priorities</h3>
+              <p>Agents start the day with an ordered list rather than an inbox, and know which conversations need attention right now.</p>
+            </div>
+          </li>
+          <li class="benefit" data-reveal>
+            <span class="benefit__mark" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3.2L13 4.8"/></svg>
+            </span>
+            <div>
+              <h3 class="h3">Cleaner CRM data</h3>
+              <p>Lead information arrives structured and consistent, which makes your pipeline, forecasting and reporting worth reading.</p>
+            </div>
+          </li>
+          <li class="benefit" data-reveal>
+            <span class="benefit__mark" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3.2L13 4.8"/></svg>
+            </span>
+            <div>
+              <h3 class="h3">Less manual work</h3>
+              <p>Copying details between tools, tagging leads and sending the same email again stop being anyone's job.</p>
+            </div>
+          </li>
+          <li class="benefit" data-reveal>
+            <span class="benefit__mark" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3.2L13 4.8"/></svg>
+            </span>
+            <div>
+              <h3 class="h3">Consistent follow-up</h3>
+              <p>Every lead receives the same standard of communication, whether it arrives on a quiet Tuesday or during your busiest week.</p>
+            </div>
+          </li>
+          <li class="benefit" data-reveal>
+            <span class="benefit__mark" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3.2L13 4.8"/></svg>
+            </span>
+            <div>
+              <h3 class="h3">Better visibility</h3>
+              <p>See what's happening across incoming opportunities — where they came from, how they were qualified and what happened next.</p>
+            </div>
+          </li>
+          <li class="benefit" data-reveal>
+            <span class="benefit__mark" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3.2L13 4.8"/></svg>
+            </span>
+            <div>
+              <h3 class="h3">More selling time</h3>
+              <p>The hours saved on administration go back where they belong: conversations, relationships and closing business.</p>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BEFORE / AFTER
+       ============================================================ -->
+  <section class="section theme-dark theme-charcoal grain" aria-labelledby="compare-title">
+    <div class="container">
+      <div class="section-head section-head--center" data-reveal>
+        <p class="eyebrow">Before &amp; After</p>
+        <h2 class="h2" id="compare-title">The same lead. Two very different journeys.</h2>
+      </div>
+
+      <div class="compare">
+
+        <article class="panel panel--before" data-reveal>
+          <p class="panel__label">Before</p>
+          <h3 class="panel__title">Handled by hand</h3>
+          <ol class="chain">
+            <li>New lead arrives in an inbox or notification</li>
+            <li>Someone finds time to read and interpret it</li>
+            <li>Details are copied into the CRM manually</li>
+            <li>Someone decides whether it's worth following up</li>
+            <li>The response goes out later than intended</li>
+            <li>The lead drifts down the pipeline and out of view</li>
+          </ol>
+        </article>
+
+        <div class="compare__divider" aria-hidden="true"><span>Versus</span></div>
+
+        <article class="panel panel--after" data-reveal>
+          <p class="panel__label">With CLOSATIX</p>
+          <h3 class="panel__title">Handled by the workflow</h3>
+          <ol class="chain">
+            <li>Lead arrives and enters the workflow automatically</li>
+            <li>AI qualification reviews intent, budget and timeline</li>
+            <li>The CRM record is created or updated with full context</li>
+            <li>Priority is assigned — Hot, Warm or Cold</li>
+            <li>The matching follow-up begins immediately</li>
+            <li>Qualified prospects are guided toward an appointment</li>
+          </ol>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHO IT'S FOR
+       ============================================================ -->
+  <section class="section theme-light theme-light-alt" aria-labelledby="audience-title">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Who It's For</p>
+        <h2 class="h2" id="audience-title">Built for teams whose leads are already arriving.</h2>
+        <p class="lead">
+          CLOSATIX is configured around the lead workflow you already run — not the other way around.
+        </p>
+      </div>
+
+      <div class="audience stagger">
+        <article class="audience-card" data-reveal>
+          <div class="audience-card__mark" aria-hidden="true">01</div>
+          <h3 class="h3">Real Estate Agencies</h3>
+          <p>Multiple lead sources and several agents sharing one pipeline, where consistency matters more than any single response.</p>
+        </article>
+        <article class="audience-card" data-reveal>
+          <div class="audience-card__mark" aria-hidden="true">02</div>
+          <h3 class="h3">Brokerages</h3>
+          <p>Higher volume across offices or regions, where routing and clean records determine how well the whole operation runs.</p>
+        </article>
+        <article class="audience-card" data-reveal>
+          <div class="audience-card__mark" aria-hidden="true">03</div>
+          <h3 class="h3">Growing Real Estate Teams</h3>
+          <p>Teams at the point where the manual process that worked at ten leads a week no longer holds at fifty.</p>
+        </article>
+        <article class="audience-card" data-reveal>
+          <div class="audience-card__mark" aria-hidden="true">04</div>
+          <h3 class="h3">Independent Professionals</h3>
+          <p>Solo agents who handle every step personally and want the first response and the record-keeping to happen without them.</p>
+        </article>
+      </div>
+
+      <p class="lead" style="margin-top:2.5rem;" data-reveal>
+        CLOSATIX isn't the right fit for everyone. If your lead volume is low or your process is
+        still being defined, we'll say so during the consultation rather than build something you
+        don't need.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INTEGRATIONS
+       ============================================================ -->
+  <section class="section theme-light" aria-labelledby="integrations-title">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Integrations</p>
+        <h2 class="h2" id="integrations-title">Designed to work with the tools behind your sales process.</h2>
+        <p class="lead">
+          Your setup is assembled from the systems your business already runs on. None of the
+          following is mandatory.
+        </p>
+      </div>
+
+      <div class="integrations stagger">
+        <div class="integration" data-reveal>
+          <span class="integration__mono" aria-hidden="true">H</span>
+          <div>
+            <div class="integration__name">HubSpot</div>
+            <div class="integration__role">CRM records and pipeline updates</div>
+          </div>
+        </div>
+        <div class="integration" data-reveal>
+          <span class="integration__mono" aria-hidden="true">M</span>
+          <div>
+            <div class="integration__name">Make</div>
+            <div class="integration__role">Workflow orchestration</div>
+          </div>
+        </div>
+        <div class="integration" data-reveal>
+          <span class="integration__mono" aria-hidden="true">O</span>
+          <div>
+            <div class="integration__name">OpenAI</div>
+            <div class="integration__role">Lead analysis and qualification</div>
+          </div>
+        </div>
+        <div class="integration" data-reveal>
+          <span class="integration__mono" aria-hidden="true">C</span>
+          <div>
+            <div class="integration__name">Cal.com</div>
+            <div class="integration__role">Appointment scheduling</div>
+          </div>
+        </div>
+        <div class="integration" data-reveal>
+          <span class="integration__mono" aria-hidden="true">G</span>
+          <div>
+            <div class="integration__name">Gmail</div>
+            <div class="integration__role">Confirmation and follow-up email</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="muted" style="margin-top:2rem;max-width:70ch;" data-reveal>
+        Your final CLOSATIX setup can be configured around the tools your business already uses.
+        All product names and trademarks are the property of their respective owners.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHY CLOSATIX
+       ============================================================ -->
+  <section class="section theme-dark grain" aria-labelledby="why-title">
+    <div class="glow" aria-hidden="true" style="width:620px;height:620px;left:-200px;bottom:-260px;background:radial-gradient(circle,rgba(118,86,66,.34),transparent 68%);"></div>
+    <div class="container">
+      <div class="why__grid">
+
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Why CLOSATIX</p>
+          <h2 class="h2" id="why-title">Automation should simplify your business — <em>not add another system to manage.</em></h2>
+          <p class="lead">
+            Most teams don't have a tooling shortage. They have a coordination problem: good systems
+            that don't talk to each other, connected by people copying information between them.
+          </p>
+        </div>
+
+        <div class="why__points stagger">
+          <div class="why__point" data-reveal>
+            <h3 class="h3">We connect what you already have</h3>
+            <p>CLOSATIX links the existing parts of your real estate lead process into one coordinated workflow. Your team keeps working in the tools they know.</p>
+          </div>
+          <div class="why__point" data-reveal>
+            <h3 class="h3">We remove steps, not add them</h3>
+            <p>Every automation we build has to replace repetitive manual work. If it creates a new thing for someone to maintain, it isn't finished.</p>
+          </div>
+          <div class="why__point" data-reveal>
+            <h3 class="h3">People stay where they matter</h3>
+            <p>Sorting, tagging and data entry are handled by the system. Conversations, negotiation and judgment stay with your agents — that's where they earn their value.</p>
+          </div>
+          <div class="why__point" data-reveal>
+            <h3 class="h3">Built around your process</h3>
+            <p>Qualification criteria, routing rules and follow-up are defined with your team, so the workflow reflects how your business actually sells.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PREMIUM CTA
+       ============================================================ -->
+  <section class="section theme-dark theme-charcoal" aria-labelledby="cta-title">
+    <div class="container">
+      <div class="cta-panel" data-reveal>
+        <p class="eyebrow" style="justify-content:center;">Book a Demo</p>
+        <h2 class="h2" id="cta-title">Stop managing every lead by hand.</h2>
+        <p class="lead">
+          See how CLOSATIX can turn your existing real estate lead process into a connected,
+          automated workflow — walked through step by step, using your own lead flow as the example.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--primary btn--lg" href="YOUR_DEMO_BOOKING_LINK">
+            Book Your Demo
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <path d="M2 8h11M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <p class="cta-panel__sub">Designed around your existing sales process</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FAQ
+       ============================================================ -->
+  <section class="section theme-light theme-light-alt" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">FAQ</p>
+        <h2 class="h2" id="faq-title">Questions worth asking first.</h2>
+      </div>
+
+      <div class="faq" id="faq-list">
+
+        <div class="faq__item" data-reveal>
+          <h3>
+            <button class="faq__trigger" type="button" id="faq-btn-1" aria-expanded="false" aria-controls="faq-panel-1">
+              <span>What is CLOSATIX?</span>
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__panel" id="faq-panel-1" role="region" aria-labelledby="faq-btn-1">
+            <p>CLOSATIX is an AI automation company for real estate businesses. Our core product, the Real Estate Lead Engine, connects your lead sources, qualification, CRM, follow-up and appointment booking into a single automated workflow — so incoming inquiries are organized and acted on without manual handling.</p>
+          </div>
+        </div>
+
+        <div class="faq__item" data-reveal>
+          <h3>
+            <button class="faq__trigger" type="button" id="faq-btn-2" aria-expanded="false" aria-controls="faq-panel-2">
+              <span>Who is CLOSATIX built for?</span>
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__panel" id="faq-panel-2" role="region" aria-labelledby="faq-btn-2">
+            <p>Real estate agencies, brokerages, growing teams and independent professionals who receive inbound leads consistently. It's most useful once lead volume has outgrown manual review, and where several people need to work from the same organized pipeline.</p>
+          </div>
+        </div>
+
+        <div class="faq__item" data-reveal>
+          <h3>
+            <button class="faq__trigger" type="button" id="faq-btn-3" aria-expanded="false" aria-controls="faq-panel-3">
+              <span>Does CLOSATIX replace my CRM?</span>
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__panel" id="faq-panel-3" role="region" aria-labelledby="faq-btn-3">
+            <p>No. CLOSATIX works with your CRM rather than instead of it. The engine creates and updates records in the system you already use, so your pipeline stays current without repetitive manual entry. There's no migration and no new platform for your team to learn.</p>
+          </div>
+        </div>
+
+        <div class="faq__item" data-reveal>
+          <h3>
+            <button class="faq__trigger" type="button" id="faq-btn-4" aria-expanded="false" aria-controls="faq-panel-4">
+              <span>Can it work with my existing lead sources?</span>
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__panel" id="faq-panel-4" role="region" aria-labelledby="faq-btn-4">
+            <p>In most cases, yes. Leads can enter the workflow from your website, landing pages, forms, booking pages and other configured sources. During the consultation we map the sources you're using today and confirm what can be connected before anything is built.</p>
+          </div>
+        </div>
+
+        <div class="faq__item" data-reveal>
+          <h3>
+            <button class="faq__trigger" type="button" id="faq-btn-5" aria-expanded="false" aria-controls="faq-panel-5">
+              <span>How does AI lead qualification work?</span>
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__panel" id="faq-panel-5" role="region" aria-labelledby="faq-btn-5">
+            <p>Incoming lead information — intent, property type, location, budget, timeline, financing or pre-approval status and qualification stage — is analyzed against criteria defined with your team. The system then classifies the lead as Hot, Warm or Cold and passes that classification to the rest of the workflow. You set the criteria, and every lead remains fully visible to your team.</p>
+          </div>
+        </div>
+
+        <div class="faq__item" data-reveal>
+          <h3>
+            <button class="faq__trigger" type="button" id="faq-btn-6" aria-expanded="false" aria-controls="faq-panel-6">
+              <span>What happens to Hot, Warm and Cold leads?</span>
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__panel" id="faq-panel-6" role="region" aria-labelledby="faq-btn-6">
+            <p>Hot leads are surfaced for fast, prioritized follow-up and can trigger an immediate notification to the right person. Warm leads move into continued nurturing and engagement. Cold leads are organized and kept in the pipeline for future follow-up without absorbing your team's immediate attention. Nothing is discarded — it's sequenced.</p>
+          </div>
+        </div>
+
+        <div class="faq__item" data-reveal>
+          <h3>
+            <button class="faq__trigger" type="button" id="faq-btn-7" aria-expanded="false" aria-controls="faq-panel-7">
+              <span>Can CLOSATIX work with my existing tools?</span>
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__panel" id="faq-panel-7" role="region" aria-labelledby="faq-btn-7">
+            <p>The engine is built to connect with the tools commonly used across real estate sales processes — CRM, scheduling and email among them. Not every tool is required, and your configuration is based on what your business already runs on.</p>
+          </div>
+        </div>
+
+        <div class="faq__item" data-reveal>
+          <h3>
+            <button class="faq__trigger" type="button" id="faq-btn-8" aria-expanded="false" aria-controls="faq-panel-8">
+              <span>Can the system be customized?</span>
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__panel" id="faq-panel-8" role="region" aria-labelledby="faq-btn-8">
+            <p>Yes. Qualification criteria, routing rules, notification recipients, follow-up messaging and the booking step are all defined around your process. Two companies with the same lead volume often need different workflows, and the setup reflects that.</p>
+          </div>
+        </div>
+
+        <div class="faq__item" data-reveal>
+          <h3>
+            <button class="faq__trigger" type="button" id="faq-btn-9" aria-expanded="false" aria-controls="faq-panel-9">
+              <span>Do I need technical knowledge to use CLOSATIX?</span>
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__panel" id="faq-panel-9" role="region" aria-labelledby="faq-btn-9">
+            <p>No. We handle the implementation and configuration. Your team continues working in the tools they already know while the automation runs in the background — the visible change is that leads arrive organized instead of raw.</p>
+          </div>
+        </div>
+
+        <div class="faq__item" data-reveal>
+          <h3>
+            <button class="faq__trigger" type="button" id="faq-btn-10" aria-expanded="false" aria-controls="faq-panel-10">
+              <span>How long does implementation take?</span>
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__panel" id="faq-panel-10" role="region" aria-labelledby="faq-btn-10">
+            <p>It depends on your workflow, your lead sources and the integrations involved. Some setups are straightforward; others require more mapping before anything is automated. We review your process during the consultation and give you a realistic timeline before work begins.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FINAL CTA
+       ============================================================ -->
+  <section class="section theme-light theme-beige" aria-labelledby="final-title">
+    <div class="container final-cta">
+      <h2 class="h2" id="final-title" data-reveal>Your leads are already coming in. Make every one <em>easier to act on.</em></h2>
+      <p class="lead" data-reveal>
+        A short conversation is enough to see where the manual steps are in your current process —
+        and what a connected workflow would look like in their place.
+      </p>
+      <div class="btn-row" data-reveal>
+        <a class="btn btn--primary btn--lg" href="YOUR_DEMO_BOOKING_LINK">
+          Book a Demo
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M2 8h11M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer grain">
+  <div class="container">
+    <div class="footer__grid">
+
+      <div class="footer__brand">
+        <!-- REPLACE WITH OFFICIAL CLOSATIX LOGO -->
+        <a class="logo logo--footer" href="#top" aria-label="CLOSATIX home">
+          <span class="logo__mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" focusable="false">
+              <rect x="7" y="7" width="26" height="26" rx="6" transform="rotate(45 20 20)"
+                    fill="none" stroke="currentColor" stroke-width="1.1" opacity=".5"/>
+              <path d="M26.2 13.9a8.7 8.7 0 1 0 0 12.2" fill="none" stroke="currentColor"
+                    stroke-width="1.9" stroke-linecap="round"/>
+              <circle cx="27.5" cy="20" r="2.2" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="logo__word">Closatix</span>
+        </a>
+        <!-- /REPLACE WITH OFFICIAL CLOSATIX LOGO -->
+        <p>AI-powered lead automation for modern real estate teams.</p>
+      </div>
+
+      <div class="footer__col">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="#solutions">Solutions</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3>Get Started</h3>
+        <ul>
+          <li><a href="YOUR_DEMO_BOOKING_LINK">Book a Demo</a></li>
+          <li><a href="#how-it-works">The Lead Engine</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; 2026 CLOSATIX. All rights reserved.</p>
+      <nav class="footer__legal" aria-label="Legal">
+        <!-- Replace "#" with your Privacy Policy and Terms pages -->
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   CLOSATIX — Vanilla JS
+   1. Navigation scroll state
+   2. Mobile menu
+   3. FAQ accordion
+   4. Scroll reveal
+   5. Active nav link
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* --------------------------------------------------------
+     1. NAVIGATION SCROLL STATE
+     -------------------------------------------------------- */
+  var nav = document.getElementById('site-nav');
+  var ticking = false;
+
+  function updateNav() {
+    if (nav) { nav.classList.toggle('is-scrolled', window.scrollY > 24); }
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(updateNav); }
+  }, { passive: true });
+  updateNav();
+
+  /* --------------------------------------------------------
+     2. MOBILE MENU
+     -------------------------------------------------------- */
+  var toggle = document.getElementById('nav-toggle');
+  var menu = document.getElementById('mobile-menu');
+
+  function setMenu(open) {
+    if (!toggle || !menu) { return; }
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menu.classList.toggle('is-open', open);
+    menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.documentElement.classList.toggle('menu-open', open);
+    if (nav) { nav.classList.toggle('is-open', open); }
+  }
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', function () {
+      var open = toggle.getAttribute('aria-expanded') === 'true';
+      setMenu(!open);
+      if (!open) {
+        var first = menu.querySelector('a');
+        if (first) { first.focus({ preventScroll: true }); }
+      }
+    });
+
+    menu.addEventListener('click', function (e) {
+      if (e.target.closest('a')) { setMenu(false); }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setMenu(false);
+        toggle.focus();
+      }
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 1000) { setMenu(false); }
+    });
+  }
+
+  /* --------------------------------------------------------
+     3. FAQ ACCORDION (one panel open at a time)
+     -------------------------------------------------------- */
+  var triggers = Array.prototype.slice.call(document.querySelectorAll('.faq__trigger'));
+
+  function closePanel(btn) {
+    var panel = document.getElementById(btn.getAttribute('aria-controls'));
+    if (!panel) { return; }
+    btn.setAttribute('aria-expanded', 'false');
+    panel.style.maxHeight = '0px';
+    panel.classList.remove('is-open');
+  }
+
+  function openPanel(btn) {
+    var panel = document.getElementById(btn.getAttribute('aria-controls'));
+    if (!panel) { return; }
+    btn.setAttribute('aria-expanded', 'true');
+    panel.classList.add('is-open');
+    panel.style.maxHeight = panel.scrollHeight + 'px';
+  }
+
+  triggers.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      triggers.forEach(closePanel);
+      if (!isOpen) { openPanel(btn); }
+    });
+  });
+
+  /* Keep an open panel correctly sized when the layout reflows */
+  window.addEventListener('resize', function () {
+    triggers.forEach(function (btn) {
+      if (btn.getAttribute('aria-expanded') === 'true') {
+        var panel = document.getElementById(btn.getAttribute('aria-controls'));
+        if (panel) { panel.style.maxHeight = panel.scrollHeight + 'px'; }
+      }
+    });
+  });
+
+  /* --------------------------------------------------------
+     4. SCROLL REVEAL
+     -------------------------------------------------------- */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  } else {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+
+    revealEls.forEach(function (el) { revealObserver.observe(el); });
+  }
+
+  /* --------------------------------------------------------
+     5. ACTIVE NAV LINK
+     -------------------------------------------------------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav__links a'));
+  var sections = navLinks
+    .map(function (link) { return document.querySelector(link.getAttribute('href')); })
+    .filter(Boolean);
+
+  if (sections.length && 'IntersectionObserver' in window) {
+    var sectionObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) { return; }
+        navLinks.forEach(function (link) {
+          var match = link.getAttribute('href') === '#' + entry.target.id;
+          link.classList.toggle('is-active', match);
+          if (match) { link.setAttribute('aria-current', 'true'); }
+          else { link.removeAttribute('aria-current'); }
+        });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+
+    sections.forEach(function (section) { sectionObserver.observe(section); });
+  }
+})();
+</script>
+
+</body>
+</html>
