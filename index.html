@@ -349,13 +349,19 @@ main{display:block;}
   gap:var(--space-md);
 }
 
-.brand{display:inline-flex;align-items:center;gap:11px;}
-.brand__logo-slot{width:30px;height:26px;flex:none;display:block;}
-.brand__name{
-  font-size:.86rem;
-  font-weight:500;
-  letter-spacing:.24em;
-  color:var(--cream-100);
+.brand{
+  display:inline-flex;
+  align-items:center;
+  flex:none;
+  line-height:0;
+}
+.brand__logo{
+  display:block;
+  width:auto;
+  height:40px;
+  max-width:190px;
+  object-fit:contain;
+  object-position:left center;
 }
 
 .nav__links{display:flex;align-items:center;gap:clamp(18px,2.4vw,32px);}
@@ -1073,6 +1079,10 @@ main{display:block;}
   font-size:.92rem;
   max-width:34ch;
 }
+.footer .brand__logo{
+  height:44px;
+  max-width:205px;
+}
 .footer__nav{
   display:flex;
   flex-wrap:wrap;
@@ -1166,12 +1176,13 @@ main{display:block;}
   :root{--nav-h:64px;}
   .nav__links,.nav .nav__cta{display:none;}
   .nav__toggle{display:flex;}
-  .brand__name{font-size:.8rem;letter-spacing:.22em;}
+  .brand__logo{height:34px;max-width:160px;}
 }
 
 /* Phones */
 @media (max-width:640px){
   :root{--gutter:19px;}
+  .footer .brand__logo{height:36px;max-width:170px;}
   .steps,.features,.audience{grid-template-columns:minmax(0,1fr);}
 
   h1,.h1{line-height:1.1;}
@@ -1211,7 +1222,7 @@ main{display:block;}
 
 /* Small phones */
 @media (max-width:400px){
-  .brand__logo-slot{width:26px;height:24px;}
+  .brand__logo{height:31px;max-width:148px;}
   .engine{padding:15px;}
   .eng-block,.eng-row,.eng-score{padding:12px 13px;}
   .eng-row{flex-wrap:wrap;gap:4px;}
@@ -1267,13 +1278,12 @@ h2,.h2{
   height:1.5px;
 }
 
-/* Blank logo slot remains intentionally empty for the future real logo */
-.brand__logo-slot{
-  border:1px solid rgba(208,183,159,.26);
-  border-radius:8px;
-  background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.008));
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
+/* Official CLOSATIX logo image */
+.brand__logo{
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,.10));
+  transition:opacity .3s var(--ease);
 }
+.brand:hover .brand__logo{opacity:.96;}
 
 /* Buttons are the main hover targets — interaction implies clickability */
 .btn{
@@ -1538,9 +1548,12 @@ h2,.h2{
 <header class="nav dark" id="top">
   <div class="container nav__inner">
     <a class="brand" href="#top" aria-label="CLOSATIX — home">
-      <!-- OFFICIAL CLOSATIX LOGO GOES HERE -->
-      <span class="brand__logo-slot" aria-hidden="true"></span>
-      <span class="brand__name">CLOSATIX</span>
+      <img
+        class="brand__logo"
+        src="./closatix-logo.png"
+        alt="CLOSATIX"
+        decoding="async"
+      >
     </a>
 
     <nav class="nav__links" aria-label="Primary">
@@ -2301,9 +2314,13 @@ h2,.h2{
     <div class="footer__top">
       <div>
         <a class="brand" href="#top" aria-label="CLOSATIX — back to top">
-          <!-- OFFICIAL CLOSATIX LOGO GOES HERE -->
-          <span class="brand__logo-slot" aria-hidden="true"></span>
-          <span class="brand__name">CLOSATIX</span>
+          <img
+            class="brand__logo"
+            src="./closatix-logo.png"
+            alt="CLOSATIX"
+            loading="lazy"
+            decoding="async"
+          >
         </a>
         <p class="footer__tagline">AI-powered lead automation for modern real estate teams.</p>
       </div>
