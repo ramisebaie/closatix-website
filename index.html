@@ -1,0 +1,2059 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CLOSATIX | AI Lead Automation for Real Estate</title>
+  <meta name="description" content="CLOSATIX connects real estate lead capture, AI qualification, CRM updates, follow-up and appointment booking into one coordinated workflow." />
+  <meta property="og:title" content="CLOSATIX | AI Lead Automation for Real Estate" />
+  <meta property="og:description" content="Turn scattered inbound real estate leads into one structured, automated system your team can actually act on." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#17110E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Crect x='10' y='10' width='44' height='44' rx='14' fill='%2317110E'/%3E%3Crect x='18' y='18' width='28' height='28' rx='10' fill='none' stroke='%23F7F2EA' stroke-width='3'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --espresso-950:#130E0B;
+      --espresso-900:#19120E;
+      --espresso-850:#201711;
+      --espresso-800:#291D16;
+      --coffee-700:#3A281E;
+      --coffee-600:#4A3326;
+      --coffee-500:#6F4D39;
+      --taupe-400:#A88E79;
+      --taupe-300:#C0AA97;
+      --cream-50:#FBF8F2;
+      --cream-100:#F7F2EA;
+      --cream-150:#F3ECE2;
+      --cream-200:#EDE2D2;
+      --ink:#211812;
+      --muted-text:#6D635B;
+      --line:rgba(58,40,30,.14);
+      --line-strong:rgba(58,40,30,.22);
+
+      --hot:#B64B45;
+      --warm:#698C64;
+      --cold:#7992B6;
+
+      --shadow-soft:0 10px 30px rgba(20,14,11,.06);
+      --shadow-card:0 16px 40px rgba(20,14,11,.08);
+      --shadow-cta:0 24px 60px rgba(20,14,11,.18);
+
+      --radius-sm:14px;
+      --radius-md:18px;
+      --radius-lg:24px;
+      --radius-pill:999px;
+
+      --container:1100px;
+
+      --space-xs:10px;
+      --space-sm:16px;
+      --space-md:24px;
+      --space-lg:40px;
+      --space-xl:64px;
+      --section-space:112px;
+
+      --navbar-h:76px;
+      --transition:260ms cubic-bezier(.22,.61,.36,1);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--cream-50);
+      color:var(--ink);
+      font-family:"Inter",system-ui,-apple-system,sans-serif;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+      overflow-x:hidden;
+    }
+    img,svg{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    :focus-visible{
+      outline:2px solid var(--coffee-500);
+      outline-offset:3px;
+    }
+
+    .container{
+      width:min(var(--container), calc(100% - 40px));
+      margin-inline:auto;
+    }
+    .section{
+      padding:var(--section-space) 0;
+      position:relative;
+      scroll-margin-top:calc(var(--navbar-h) + 20px);
+    }
+    .section--tight{padding:88px 0}
+    .section--dark{
+      background:
+        radial-gradient(1200px 700px at 85% 10%, rgba(111,77,57,.14), transparent 45%),
+        linear-gradient(180deg,var(--espresso-900),var(--espresso-950));
+      color:var(--cream-100);
+    }
+    .section--beige{background:var(--cream-150)}
+    .section--warm{background:var(--cream-100)}
+    .section-head{
+      margin-bottom:40px;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:.72rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--taupe-400);
+      font-weight:600;
+      margin-bottom:14px;
+    }
+    .eyebrow::before{
+      content:"";
+      width:28px;
+      height:1px;
+      background:currentColor;
+      opacity:.7;
+    }
+    .eyebrow.center{justify-content:center}
+    .center{text-align:center}
+    .display{
+      font-family:"Cinzel",serif;
+      line-height:1.06;
+      letter-spacing:-.01em;
+      font-weight:600;
+      margin:0;
+    }
+    .display-xl{
+      font-size:clamp(3rem,5vw,4.2rem);
+      line-height:1.02;
+    }
+    .display-lg{
+      font-size:clamp(2.25rem,3.6vw,3.35rem);
+    }
+    .display-md{
+      font-size:clamp(1.8rem,2.6vw,2.45rem);
+    }
+    .accent{
+      font-family:"Cormorant Garamond",serif;
+      font-style:italic;
+      font-weight:600;
+      letter-spacing:.01em;
+    }
+    p{
+      margin:0;
+      color:var(--muted-text);
+      font-size:1rem;
+    }
+    .lead{
+      font-size:1.05rem;
+      color:#5f554d;
+    }
+    .lead-dark{
+      color:rgba(247,242,234,.78);
+    }
+    .muted{
+      color:var(--muted-text);
+    }
+    .light-muted{
+      color:rgba(247,242,234,.72);
+    }
+
+    /* NAV */
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:80;
+      background:rgba(25,18,14,.85);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(247,242,234,.08);
+      transition:background var(--transition), border-color var(--transition), box-shadow var(--transition);
+    }
+    .site-header.scrolled{
+      background:rgba(25,18,14,.94);
+      box-shadow:0 14px 40px rgba(13,9,7,.18);
+    }
+    .nav{
+      height:var(--navbar-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:max-content;
+    }
+    .brand-mark{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:
+        linear-gradient(145deg, rgba(247,242,234,.14), rgba(247,242,234,.03)),
+        rgba(247,242,234,.03);
+      border:1px solid rgba(247,242,234,.15);
+      position:relative;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+      overflow:hidden;
+    }
+    .brand-mark::before,
+    .brand-mark::after{
+      content:"";
+      position:absolute;
+      inset:8px;
+      border-radius:9px;
+      border:1px solid rgba(247,242,234,.3);
+    }
+    .brand-mark::after{
+      inset:auto 9px 9px auto;
+      width:11px;height:11px;
+      border-radius:5px;
+      background:rgba(247,242,234,.85);
+      border:none;
+    }
+    .brand-name{
+      color:var(--cream-100);
+      font-family:"Cinzel",serif;
+      font-size:1.02rem;
+      letter-spacing:.08em;
+    }
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+    }
+    .nav-link{
+      position:relative;
+      font-size:.92rem;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      color:rgba(247,242,234,.72);
+      transition:color var(--transition);
+    }
+    .nav-link::after{
+      content:"";
+      position:absolute;
+      left:0;right:0;bottom:-10px;
+      height:1.5px;
+      background:var(--cream-100);
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:transform var(--transition), opacity var(--transition);
+      opacity:.9;
+    }
+    .nav-link:hover,
+    .nav-link.active{
+      color:var(--cream-100);
+    }
+    .nav-link.active::after{
+      transform:scaleX(1);
+    }
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:48px;
+      padding:0 22px;
+      border-radius:var(--radius-pill);
+      border:1px solid transparent;
+      font-size:.9rem;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      font-weight:600;
+      cursor:pointer;
+      transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        border-color var(--transition),
+        color var(--transition),
+        background var(--transition),
+        opacity var(--transition);
+      position:relative;
+      overflow:hidden;
+      isolation:isolate;
+      white-space:nowrap;
+    }
+    .btn::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.18) 48%, transparent 100%);
+      transform:translateX(-140%);
+      transition:transform 560ms cubic-bezier(.22,.61,.36,1);
+      z-index:-1;
+    }
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+    .btn:hover::after{
+      transform:translateX(140%);
+    }
+    .btn-primary{
+      background:var(--cream-100);
+      color:var(--espresso-900);
+      box-shadow:0 10px 22px rgba(251,248,242,.08);
+    }
+    .btn-primary:hover{
+      box-shadow:0 16px 30px rgba(251,248,242,.15);
+    }
+    .btn-secondary{
+      background:transparent;
+      color:var(--cream-100);
+      border-color:rgba(247,242,234,.24);
+    }
+    .btn-secondary:hover{
+      border-color:rgba(247,242,234,.42);
+      background:rgba(247,242,234,.04);
+      box-shadow:0 16px 30px rgba(0,0,0,.12);
+    }
+    .btn-dark{
+      background:var(--espresso-900);
+      color:var(--cream-100);
+      box-shadow:0 14px 30px rgba(25,18,14,.16);
+    }
+    .btn-dark:hover{
+      background:#221711;
+      box-shadow:0 18px 36px rgba(25,18,14,.2);
+    }
+    .btn-outline-dark{
+      background:transparent;
+      color:var(--espresso-900);
+      border-color:rgba(33,24,18,.14);
+    }
+    .btn-outline-dark:hover{
+      border-color:rgba(33,24,18,.28);
+      background:rgba(33,24,18,.03);
+    }
+    .btn .arrow{
+      display:inline-block;
+      transform:translateX(0);
+      transition:transform var(--transition);
+    }
+    .btn:hover .arrow{
+      transform:translateX(3px);
+    }
+
+    .menu-toggle{
+      display:none;
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:1px solid rgba(247,242,234,.18);
+      background:rgba(247,242,234,.03);
+      color:var(--cream-100);
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:background var(--transition), border-color var(--transition), transform var(--transition);
+    }
+    .menu-toggle:hover{
+      background:rgba(247,242,234,.07);
+      border-color:rgba(247,242,234,.28);
+      transform:translateY(-1px);
+    }
+    .menu-toggle svg{width:18px;height:18px}
+    .mobile-menu{
+      display:none;
+      position:absolute;
+      top:calc(100% + 8px);
+      left:20px;
+      right:20px;
+      background:linear-gradient(180deg, rgba(32,23,17,.98), rgba(19,14,11,.98));
+      border:1px solid rgba(247,242,234,.08);
+      border-radius:20px;
+      box-shadow:0 24px 60px rgba(0,0,0,.28);
+      padding:12px;
+    }
+    .mobile-menu.open{display:block}
+    .mobile-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 14px;
+      border-radius:14px;
+      color:var(--cream-100);
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      font-size:.86rem;
+      transition:background var(--transition), color var(--transition);
+    }
+    .mobile-link:hover{
+      background:rgba(247,242,234,.05);
+    }
+    .mobile-link.cta{
+      margin-top:8px;
+      background:var(--cream-100);
+      color:var(--espresso-900);
+      font-weight:700;
+    }
+
+    /* HERO */
+    .hero{
+      position:relative;
+      background:
+        radial-gradient(900px 540px at 78% 18%, rgba(111,77,57,.18), transparent 52%),
+        radial-gradient(700px 440px at 8% 0%, rgba(74,51,38,.18), transparent 40%),
+        linear-gradient(180deg,var(--espresso-900),var(--espresso-950));
+      color:var(--cream-100);
+      overflow:hidden;
+      padding:92px 0 100px;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:auto 0 0 0;
+      height:140px;
+      background:linear-gradient(180deg, transparent, rgba(19,14,11,.34));
+      pointer-events:none;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);
+      gap:56px;
+      align-items:center;
+    }
+    .hero-copy .eyebrow{
+      color:var(--taupe-300);
+    }
+    .hero-intro{
+      margin-top:20px;
+      margin-bottom:18px;
+      color:rgba(247,242,234,.86);
+      font-size:1.06rem;
+    }
+    .hero-copy .lead-dark{
+      max-width:58ch;
+    }
+    .hero-actions{
+      margin-top:34px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+    .hero-trust{
+      margin-top:22px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:rgba(247,242,234,.64);
+      font-size:.82rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .hero-trust::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:rgba(247,242,234,.45);
+      box-shadow:0 0 0 5px rgba(247,242,234,.07);
+    }
+
+    .panel{
+      background:
+        linear-gradient(180deg, rgba(247,242,234,.04), rgba(247,242,234,.015)),
+        rgba(247,242,234,.02);
+      border:1px solid rgba(247,242,234,.11);
+      border-radius:28px;
+      box-shadow:
+        0 30px 80px rgba(0,0,0,.26),
+        inset 0 1px 0 rgba(255,255,255,.05);
+      padding:22px;
+      position:relative;
+      overflow:hidden;
+      animation:floatPanel 7s ease-in-out infinite;
+    }
+    @keyframes floatPanel{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-6px)}
+    }
+    .panel::before{
+      content:"";
+      position:absolute;
+      inset:-40% auto auto 58%;
+      width:260px;
+      height:260px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(111,77,57,.18), transparent 65%);
+      filter:blur(8px);
+      pointer-events:none;
+    }
+    .panel-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+    .panel-title{
+      font-size:.86rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--cream-100);
+      font-weight:700;
+    }
+    .panel-status{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:rgba(247,242,234,.64);
+      font-size:.74rem;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+    }
+    .status-dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:#87A37C;
+      box-shadow:0 0 0 6px rgba(135,163,124,.08);
+    }
+    .workflow-stack{
+      display:grid;
+      gap:12px;
+    }
+    .flow-block{
+      background:rgba(247,242,234,.035);
+      border:1px solid rgba(247,242,234,.08);
+      border-radius:18px;
+      padding:16px;
+      transition:transform var(--transition), border-color var(--transition), background var(--transition), box-shadow var(--transition);
+    }
+    .flow-block:hover{
+      transform:translateY(-2px);
+      border-color:rgba(247,242,234,.14);
+      background:rgba(247,242,234,.05);
+      box-shadow:0 16px 34px rgba(0,0,0,.12);
+    }
+    .flow-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:8px;
+    }
+    .flow-step{
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:rgba(247,242,234,.54);
+      font-weight:600;
+    }
+    .flow-name{
+      color:var(--cream-100);
+      font-weight:600;
+      font-size:.97rem;
+    }
+    .flow-sub{
+      font-size:.88rem;
+      color:rgba(247,242,234,.72);
+    }
+    .chip-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:12px;
+    }
+    .chip{
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(247,242,234,.09);
+      background:rgba(247,242,234,.04);
+      color:rgba(247,242,234,.76);
+      font-size:.76rem;
+      line-height:1;
+    }
+    .score-wrap{
+      margin-top:14px;
+      padding-top:14px;
+      border-top:1px solid rgba(247,242,234,.07);
+    }
+    .score-label{
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:rgba(247,242,234,.54);
+      margin-bottom:10px;
+      font-weight:600;
+    }
+    .score-badges{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+    }
+    .score{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      font-size:.76rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      transition:transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+    .score:hover{
+      transform:translateY(-1px);
+      box-shadow:0 10px 20px rgba(0,0,0,.16);
+    }
+    .score.hot{
+      color:#F5DCD8;
+      background:rgba(182,75,69,.15);
+      border-color:rgba(182,75,69,.3);
+    }
+    .score.warm{
+      color:#E4F0E2;
+      background:rgba(105,140,100,.16);
+      border-color:rgba(105,140,100,.32);
+    }
+    .score.cold{
+      color:#E0E8F7;
+      background:rgba(121,146,182,.16);
+      border-color:rgba(121,146,182,.32);
+    }
+
+    /* SHARED CARD SYSTEM */
+    .cards-4,
+    .cards-3,
+    .cards-2,
+    .cards-features{
+      display:grid;
+      gap:20px;
+    }
+    .cards-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .cards-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .cards-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .cards-features{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.62));
+      border:1px solid var(--line);
+      border-radius:var(--radius-md);
+      padding:24px;
+      box-shadow:var(--shadow-soft);
+      transition:transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
+      position:relative;
+    }
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:var(--shadow-card);
+      border-color:var(--line-strong);
+      background:#fff;
+    }
+    .card-dark{
+      background:linear-gradient(180deg, rgba(247,242,234,.04), rgba(247,242,234,.02));
+      border-color:rgba(247,242,234,.1);
+      color:var(--cream-100);
+      box-shadow:none;
+    }
+    .card-dark:hover{
+      background:rgba(247,242,234,.04);
+      border-color:rgba(247,242,234,.16);
+      box-shadow:0 20px 40px rgba(0,0,0,.18);
+    }
+    .step-num{
+      font-size:.78rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--taupe-400);
+      font-weight:700;
+      margin-bottom:12px;
+    }
+    .card-title{
+      font-weight:700;
+      font-size:1.06rem;
+      margin-bottom:10px;
+      color:var(--ink);
+    }
+    .card-dark .card-title{color:var(--cream-100)}
+    .icon-badge{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      display:grid;
+      place-items:center;
+      color:var(--coffee-600);
+      background:rgba(247,242,234,.6);
+      margin-bottom:18px;
+      transition:transform var(--transition), border-color var(--transition), color var(--transition), background var(--transition);
+    }
+    .card:hover .icon-badge{
+      transform:translateY(-2px);
+      color:var(--coffee-500);
+      border-color:var(--line-strong);
+      background:#fff;
+    }
+    .icon-badge svg{width:18px;height:18px}
+    .separator-list{
+      border-top:1px solid var(--line);
+    }
+    .separator-item{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:18px;
+      padding:18px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .separator-item:last-child{border-bottom:none}
+    .separator-item-num{
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:var(--taupe-400);
+      font-weight:700;
+      min-width:34px;
+      padding-top:4px;
+    }
+    .separator-item h3{
+      margin:0 0 6px;
+      font-size:1.05rem;
+    }
+
+    /* Bottleneck */
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1.08fr;
+      gap:56px;
+      align-items:start;
+    }
+    .statement{
+      margin-top:30px;
+      border:1px solid var(--line);
+      border-left:4px solid var(--coffee-500);
+      border-radius:18px;
+      padding:24px 24px 24px 20px;
+      background:rgba(255,255,255,.6);
+      box-shadow:var(--shadow-soft);
+    }
+    .statement p{
+      font-size:1.15rem;
+      font-family:"Cormorant Garamond",serif;
+      color:#43372d;
+    }
+
+    /* Workflow section */
+    .workflow-line{
+      display:grid;
+      grid-template-columns:repeat(6,minmax(0,1fr));
+      gap:14px;
+      align-items:stretch;
+      margin-top:38px;
+    }
+    .flow-step-card{
+      position:relative;
+      background:linear-gradient(180deg, rgba(247,242,234,.045), rgba(247,242,234,.03));
+      border:1px solid rgba(247,242,234,.1);
+      border-radius:20px;
+      padding:18px;
+      min-height:190px;
+      overflow:hidden;
+    }
+    .flow-step-card::after{
+      content:"";
+      position:absolute;
+      top:50%;
+      right:-14px;
+      width:28px;
+      height:1px;
+      background:rgba(247,242,234,.18);
+      transform:translateY(-50%);
+    }
+    .flow-step-card:last-child::after{display:none}
+    .flow-step-card .mini-title{
+      font-size:.72rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:rgba(247,242,234,.54);
+      margin-bottom:10px;
+      font-weight:700;
+    }
+    .flow-step-card h3{
+      margin:0 0 8px;
+      font-size:1rem;
+      color:var(--cream-100);
+    }
+    .flow-step-card p{
+      color:rgba(247,242,234,.72);
+      font-size:.92rem;
+    }
+    .mini-score{
+      margin-top:14px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .mini-score span{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:30px;
+      padding:0 10px;
+      border-radius:999px;
+      font-size:.7rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .mini-score .hot{background:rgba(182,75,69,.14);color:#F3D8D4;border-color:rgba(182,75,69,.28)}
+    .mini-score .warm{background:rgba(105,140,100,.14);color:#E3EEDD;border-color:rgba(105,140,100,.28)}
+    .mini-score .cold{background:rgba(121,146,182,.14);color:#DFE8F8;border-color:rgba(121,146,182,.28)}
+    .workflow-note{
+      margin-top:24px;
+      color:rgba(247,242,234,.68);
+      text-align:center;
+      font-size:.96rem;
+    }
+
+    /* Before After */
+    .before-after{
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      gap:24px;
+      align-items:stretch;
+      margin-top:34px;
+    }
+    .versus{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:.78rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--taupe-400);
+      position:relative;
+      min-width:64px;
+    }
+    .versus::before,
+    .versus::after{
+      content:"";
+      position:absolute;
+      top:0;bottom:0;
+      width:1px;
+      background:var(--line);
+    }
+    .versus::before{left:0}
+    .versus::after{right:0}
+    .timeline{
+      list-style:none;
+      padding:0;
+      margin:18px 0 0;
+      display:grid;
+      gap:14px;
+    }
+    .timeline li{
+      position:relative;
+      padding-left:18px;
+      color:#5d5149;
+      font-size:.96rem;
+    }
+    .timeline li::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:.6em;
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:var(--coffee-500);
+    }
+    .card-dark .timeline li{
+      color:rgba(247,242,234,.78);
+    }
+    .card-dark .timeline li::before{
+      background:rgba(247,242,234,.7);
+    }
+
+    /* Benefits */
+    .benefit-list{
+      border-top:1px solid var(--line);
+    }
+    .benefit{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:16px;
+      padding:18px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .check{
+      width:28px;
+      height:28px;
+      border-radius:50%;
+      background:rgba(111,77,57,.08);
+      border:1px solid rgba(111,77,57,.16);
+      color:var(--coffee-500);
+      display:grid;
+      place-items:center;
+      margin-top:2px;
+      flex-shrink:0;
+    }
+    .benefit h3{
+      margin:0 0 4px;
+      font-size:1.02rem;
+    }
+
+    /* Integrations */
+    .integration-shell{
+      background:rgba(255,255,255,.74);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:20px;
+      box-shadow:var(--shadow-soft);
+      margin-top:28px;
+    }
+    .integration-pills{
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:12px;
+    }
+    .pill{
+      min-height:54px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:0 12px;
+      border-radius:999px;
+      background:rgba(247,242,234,.76);
+      border:1px solid rgba(33,24,18,.08);
+      color:#3e3129;
+      font-weight:600;
+      letter-spacing:.02em;
+      transition:transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
+      text-align:center;
+    }
+    .pill:hover{
+      transform:translateY(-2px);
+      box-shadow:0 14px 30px rgba(20,14,11,.08);
+      border-color:rgba(33,24,18,.14);
+      background:#fff;
+    }
+
+    /* Philosophy */
+    .philosophy{
+      display:grid;
+      gap:18px;
+      margin-top:12px;
+    }
+    .philosophy-item{
+      padding-left:20px;
+      border-left:1px solid rgba(247,242,234,.14);
+    }
+    .philosophy-item h3{
+      color:var(--cream-100);
+      margin:0 0 6px;
+      font-size:1.02rem;
+    }
+    .philosophy-item p{
+      color:rgba(247,242,234,.72);
+    }
+
+    /* CTA Card */
+    .cta-card{
+      background:
+        radial-gradient(700px 260px at 85% 0%, rgba(111,77,57,.22), transparent 52%),
+        linear-gradient(180deg, var(--coffee-700), var(--espresso-900));
+      color:var(--cream-100);
+      border-radius:24px;
+      border:1px solid rgba(247,242,234,.08);
+      box-shadow:var(--shadow-cta);
+      padding:40px;
+      position:relative;
+      overflow:hidden;
+    }
+    .cta-card::before{
+      content:"";
+      position:absolute;
+      inset:auto -80px -100px auto;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(247,242,234,.08), transparent 62%);
+      pointer-events:none;
+    }
+    .cta-card .eyebrow{color:var(--taupe-300)}
+    .cta-card p{color:rgba(247,242,234,.76)}
+    .cta-card .small-note{
+      margin-top:20px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:rgba(247,242,234,.62);
+      font-size:.8rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .cta-card .small-note::before{
+      content:"";
+      width:8px;height:8px;border-radius:50%;
+      background:rgba(247,242,234,.4);
+    }
+
+    /* FAQ */
+    .faq-wrap{
+      margin-top:28px;
+      border-top:1px solid var(--line);
+    }
+    .faq-item{
+      border-bottom:1px solid var(--line);
+    }
+    .faq-btn{
+      width:100%;
+      background:transparent;
+      border:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      text-align:left;
+      padding:22px 0;
+      cursor:pointer;
+      color:var(--ink);
+    }
+    .faq-btn span{
+      font-size:1.04rem;
+      font-weight:600;
+    }
+    .faq-icon{
+      width:28px;
+      height:28px;
+      border-radius:50%;
+      border:1px solid var(--line);
+      display:grid;
+      place-items:center;
+      flex-shrink:0;
+      color:var(--coffee-500);
+      transition:transform var(--transition), background var(--transition), border-color var(--transition);
+    }
+    .faq-item.open .faq-icon{
+      background:rgba(111,77,57,.08);
+      border-color:rgba(111,77,57,.2);
+      transform:rotate(45deg);
+    }
+    .faq-content{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height var(--transition);
+    }
+    .faq-content p{
+      padding:0 0 22px;
+      max-width:70ch;
+    }
+
+    /* Final CTA */
+    .final-cta{
+      text-align:center;
+    }
+    .final-cta .display-lg{
+      max-width:860px;
+      margin-inline:auto;
+    }
+    .final-cta p{
+      max-width:640px;
+      margin:18px auto 0;
+    }
+    .final-cta .actions{
+      margin-top:28px;
+      display:flex;
+      justify-content:center;
+    }
+
+    /* Footer */
+    .site-footer{
+      background:linear-gradient(180deg,var(--espresso-900),var(--espresso-950));
+      color:var(--cream-100);
+      padding:64px 0 28px;
+    }
+    .footer-top{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:40px;
+      align-items:start;
+    }
+    .footer-brand p{
+      color:rgba(247,242,234,.68);
+      max-width:34ch;
+      margin-top:14px;
+    }
+    .footer-nav{
+      display:grid;
+      gap:14px;
+      justify-items:end;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      font-size:.86rem;
+      color:rgba(247,242,234,.74);
+    }
+    .footer-nav a{
+      transition:color var(--transition), transform var(--transition);
+    }
+    .footer-nav a:hover{
+      color:var(--cream-100);
+      transform:translateX(-2px);
+    }
+    .footer-bottom{
+      border-top:1px solid rgba(247,242,234,.08);
+      margin-top:32px;
+      padding-top:18px;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      color:rgba(247,242,234,.58);
+      font-size:.9rem;
+    }
+    .footer-legal{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    /* Reveal */
+    .reveal{
+      opacity:0;
+      transform:translateY(18px);
+      transition:opacity 720ms ease, transform 720ms ease;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:none;
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px){
+      .hero-grid,
+      .split{
+        grid-template-columns:1fr;
+        gap:40px;
+      }
+      .cards-4,
+      .cards-features{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+      .workflow-line{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+      }
+      .footer-top{
+        grid-template-columns:1fr;
+      }
+      .footer-nav{
+        justify-items:start;
+        grid-template-columns:repeat(3,minmax(0,max-content));
+        gap:12px 18px;
+      }
+    }
+    @media (max-width: 900px){
+      :root{
+        --section-space:88px;
+      }
+      .nav-links,.nav-actions .btn{
+        display:none;
+      }
+      .menu-toggle{
+        display:inline-flex;
+      }
+      .hero{
+        padding:80px 0 88px;
+      }
+      .before-after{
+        grid-template-columns:1fr;
+      }
+      .versus{
+        min-height:40px;
+      }
+      .versus::before,.versus::after{
+        top:50%;bottom:auto;height:1px;width:42%;transform:translateY(-50%);
+      }
+      .versus::before{left:0}
+      .versus::after{right:0}
+      .cards-3{
+        grid-template-columns:1fr;
+      }
+      .integration-pills{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+      }
+    }
+    @media (max-width: 768px){
+      :root{
+        --section-space:76px;
+      }
+      .container{
+        width:min(var(--container), calc(100% - 34px));
+      }
+      .display-xl{
+        font-size:clamp(2.55rem,12vw,3.35rem);
+      }
+      .display-lg{
+        font-size:clamp(2rem,8vw,2.8rem);
+      }
+      .hero-grid{
+        gap:28px;
+      }
+      .hero-actions{
+        flex-direction:column;
+      }
+      .hero-actions .btn{
+        width:100%;
+      }
+      .cards-4,
+      .cards-features,
+      .cards-2{
+        grid-template-columns:1fr;
+      }
+      .workflow-line{
+        grid-template-columns:1fr;
+        gap:18px;
+      }
+      .flow-step-card{
+        min-height:auto;
+      }
+      .flow-step-card::after{
+        top:auto;
+        bottom:-12px;
+        left:50%;
+        right:auto;
+        width:1px;
+        height:24px;
+        transform:translateX(-50%);
+      }
+      .flow-step-card:last-child::after{display:none}
+      .integration-pills{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+      .cta-card{
+        padding:32px 24px;
+      }
+      .final-cta .actions .btn{
+        width:100%;
+      }
+      .footer-bottom{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+    @media (max-width: 480px){
+      .container{
+        width:min(var(--container), calc(100% - 28px));
+      }
+      .nav{gap:12px}
+      .brand-name{
+        font-size:.94rem;
+      }
+      .btn{
+        min-height:50px;
+        width:100%;
+      }
+      .panel{
+        padding:18px;
+        border-radius:22px;
+      }
+      .chip-row,.score-badges{
+        gap:8px;
+      }
+      .score-badges{
+        grid-template-columns:1fr;
+      }
+      .integration-shell{
+        padding:16px;
+      }
+      .integration-pills{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+      .footer-nav{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{
+        animation:none !important;
+        transition:none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="CLOSATIX home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">CLOSATIX</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a class="nav-link" href="#solutions" data-nav="solutions">Solutions</a>
+        <a class="nav-link" href="#how-it-works" data-nav="how-it-works">How It Works</a>
+        <a class="nav-link" href="#benefits" data-nav="benefits">Benefits</a>
+        <a class="nav-link" href="#faq" data-nav="faq">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-primary" href="#" data-booking>Book a Demo <span class="arrow">→</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <a class="mobile-link" href="#solutions" data-mobile-link>Solutions</a>
+        <a class="mobile-link" href="#how-it-works" data-mobile-link>How It Works</a>
+        <a class="mobile-link" href="#benefits" data-mobile-link>Benefits</a>
+        <a class="mobile-link" href="#faq" data-mobile-link>FAQ</a>
+        <a class="mobile-link cta" href="#" data-booking data-mobile-link>Book a Demo</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">AI Lead Automation for Real Estate</div>
+          <h1 class="display display-xl">Turn real estate<br>leads into action —<br><span class="accent">automatically.</span></h1>
+          <p class="hero-intro accent">Your best leads shouldn't be waiting in an inbox.</p>
+          <p class="lead lead-dark">CLOSATIX captures, qualifies, organizes and follows up with your incoming leads — so your team focuses on the opportunities most ready to move forward.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#" data-booking>Book a Demo <span class="arrow">→</span></a>
+            <a class="btn btn-secondary" href="#how-it-works">See How It Works <span class="arrow">→</span></a>
+          </div>
+          <div class="hero-trust">Built for modern real estate teams</div>
+        </div>
+
+        <div class="reveal">
+          <div class="panel" aria-label="CLOSATIX workflow overview">
+            <div class="panel-head">
+              <div class="panel-title">CLOSATIX Lead Engine</div>
+              <div class="panel-status"><span class="status-dot"></span> Workflow Active</div>
+            </div>
+
+            <div class="workflow-stack">
+              <div class="flow-block">
+                <div class="flow-row">
+                  <div>
+                    <div class="flow-step">01 — Capture</div>
+                    <div class="flow-name">Inquiry received</div>
+                  </div>
+                </div>
+                <div class="chip-row">
+                  <span class="chip">Website form</span>
+                  <span class="chip">Buyer</span>
+                  <span class="chip">Waterfront</span>
+                </div>
+              </div>
+
+              <div class="flow-block">
+                <div class="flow-row">
+                  <div>
+                    <div class="flow-step">02 — Qualify</div>
+                    <div class="flow-name">Lead qualification</div>
+                  </div>
+                </div>
+                <div class="chip-row">
+                  <span class="chip">Intent</span>
+                  <span class="chip">Budget</span>
+                  <span class="chip">Timeline</span>
+                  <span class="chip">Financing</span>
+                </div>
+                <div class="score-wrap">
+                  <div class="score-label">AI Lead Score</div>
+                  <div class="score-badges">
+                    <div class="score hot">Hot</div>
+                    <div class="score warm">Warm</div>
+                    <div class="score cold">Cold</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flow-block">
+                <div class="flow-row">
+                  <div class="flow-name">CRM updated</div>
+                  <div class="flow-sub">Record synced</div>
+                </div>
+              </div>
+
+              <div class="flow-block">
+                <div class="flow-row">
+                  <div class="flow-name">Smart follow-up</div>
+                  <div class="flow-sub">Priority sequence</div>
+                </div>
+              </div>
+
+              <div class="flow-block">
+                <div class="flow-row">
+                  <div class="flow-name">Appointment</div>
+                  <div class="flow-sub">Booking confirmed</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--warm reveal">
+      <div class="container">
+        <div class="split">
+          <div>
+            <div class="eyebrow">The Bottleneck</div>
+            <h2 class="display display-lg">Most real estate teams<br>don't need more software.<br>They need <span class="accent" style="color:var(--coffee-500)">faster action.</span></h2>
+          </div>
+
+          <div class="separator-list">
+            <div class="separator-item">
+              <div class="separator-item-num">01</div>
+              <div>
+                <h3>Leads arrive from everywhere</h3>
+                <p>Forms, portals, campaigns and referrals — each in a different format.</p>
+              </div>
+            </div>
+            <div class="separator-item">
+              <div class="separator-item-num">02</div>
+              <div>
+                <h3>Every inquiry waits for manual review</h3>
+                <p>Nothing moves until someone reads it and decides what it's worth.</p>
+              </div>
+            </div>
+            <div class="separator-item">
+              <div class="separator-item-num">03</div>
+              <div>
+                <h3>Follow-up happens later than intended</h3>
+                <p>The reply goes out when there's time, not when interest is highest.</p>
+              </div>
+            </div>
+            <div class="separator-item">
+              <div class="separator-item-num">04</div>
+              <div>
+                <h3>High-intent leads get buried</h3>
+                <p>A financing-ready buyer looks the same as a passing question in the inbox.</p>
+              </div>
+            </div>
+            <div class="separator-item">
+              <div class="separator-item-num">05</div>
+              <div>
+                <h3>Administration replaces selling</h3>
+                <p>Copying, tagging and chasing take the hours meant for clients.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="statement">
+          <p>CLOSATIX connects the entire lead journey into <span class="accent">one workflow</span> — from first inquiry to qualified conversation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="how-it-works">
+      <div class="container">
+        <div class="section-head center">
+          <div class="eyebrow center">How It Works</div>
+          <h2 class="display display-lg">Four steps. One uninterrupted path.</h2>
+        </div>
+
+        <div class="cards-4">
+          <article class="card">
+            <div class="step-num">01</div>
+            <h3 class="card-title">Capture</h3>
+            <p>Incoming leads enter one connected workflow from your existing sources.</p>
+          </article>
+          <article class="card">
+            <div class="step-num">02</div>
+            <h3 class="card-title">Qualify</h3>
+            <p>AI evaluates intent, budget, timeline and readiness to determine lead priority.</p>
+          </article>
+          <article class="card">
+            <div class="step-num">03</div>
+            <h3 class="card-title">Automate</h3>
+            <p>CRM updates, notifications and relevant follow-up happen automatically.</p>
+          </article>
+          <article class="card">
+            <div class="step-num">04</div>
+            <h3 class="card-title">Act</h3>
+            <p>Your team knows where to focus while qualified prospects move toward the next conversation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--warm reveal" id="solutions">
+      <div class="container">
+        <div class="section-head center">
+          <div class="eyebrow center">The Lead Engine</div>
+          <h2 class="display display-lg">One lead engine.<br>Every critical step <span class="accent" style="color:var(--coffee-500)">connected.</span></h2>
+        </div>
+
+        <div class="cards-features">
+          <article class="card">
+            <div class="icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h10M14 7l6 5-6 5"/><circle cx="7" cy="12" r="3"/></svg>
+            </div>
+            <h3 class="card-title">AI Lead Qualification</h3>
+            <p>Prioritize high-intent opportunities before your team even opens the inbox.</p>
+          </article>
+          <article class="card">
+            <div class="icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="5" width="16" height="14" rx="3"/><path d="M8 9h8M8 13h5"/></svg>
+            </div>
+            <h3 class="card-title">CRM Automation</h3>
+            <p>Keep lead records accurate and updated without repetitive manual entry.</p>
+          </article>
+          <article class="card">
+            <div class="icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 7h14M5 12h14M5 17h9"/><path d="M17 17l2 2 4-4"/></svg>
+            </div>
+            <h3 class="card-title">Smart Follow-Up</h3>
+            <p>Match follow-up to each lead's readiness automatically.</p>
+          </article>
+          <article class="card">
+            <div class="icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8h12M6 12h12M6 16h12"/><circle cx="18" cy="8" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="7" cy="16" r="2"/></svg>
+            </div>
+            <h3 class="card-title">Hot / Warm / Cold Routing</h3>
+            <p>Different lead priorities trigger the workflow that fits them.</p>
+          </article>
+          <article class="card">
+            <div class="icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M8 11h8M8 15h5"/></svg>
+            </div>
+            <h3 class="card-title">Appointment Booking</h3>
+            <p>Guide qualified prospects smoothly toward the next conversation.</p>
+          </article>
+          <article class="card">
+            <div class="icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 6h10v4H7z"/><path d="M6 14h12M6 18h8"/><rect x="4" y="4" width="16" height="16" rx="3"/></svg>
+            </div>
+            <h3 class="card-title">Booking Sync</h3>
+            <p>Keep booking status, timing and meeting details connected to the lead record.</p>
+          </article>
+          <article class="card">
+            <div class="icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4v8"/><path d="M8.5 8.5 12 12l3.5-3.5"/><rect x="4" y="14" width="16" height="6" rx="3"/></svg>
+            </div>
+            <h3 class="card-title">Team Notifications</h3>
+            <p>Surface important opportunities to the right person quickly.</p>
+          </article>
+          <article class="card">
+            <div class="icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="m5 8 7 5 7-5"/></svg>
+            </div>
+            <h3 class="card-title">Automated Email Communication</h3>
+            <p>Deliver consistent confirmation and follow-up without repetitive manual work.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark reveal">
+      <div class="container">
+        <div class="section-head center">
+          <div class="eyebrow center">The Workflow</div>
+          <h2 class="display display-lg">Six separate tasks become <span class="accent">one path.</span></h2>
+        </div>
+
+        <div class="workflow-line">
+          <article class="flow-step-card">
+            <div class="mini-title">Lead Source</div>
+            <h3>Website, forms, landing pages.</h3>
+            <p>Leads arrive through the channels your team already uses.</p>
+          </article>
+          <article class="flow-step-card">
+            <div class="mini-title">CLOSATIX</div>
+            <h3>Every inquiry enters one workflow.</h3>
+            <p>Capture begins without manual handoffs or delayed review.</p>
+          </article>
+          <article class="flow-step-card">
+            <div class="mini-title">AI Qualification</div>
+            <h3>Intent, budget, timeline, readiness.</h3>
+            <div class="mini-score">
+              <span class="hot">Hot</span>
+              <span class="warm">Warm</span>
+              <span class="cold">Cold</span>
+            </div>
+          </article>
+          <article class="flow-step-card">
+            <div class="mini-title">CRM</div>
+            <h3>Record created or updated.</h3>
+            <p>Clean structure replaces repetitive manual entry.</p>
+          </article>
+          <article class="flow-step-card">
+            <div class="mini-title">Smart Follow-Up</div>
+            <h3>Matched to the lead's priority.</h3>
+            <p>The message path fits how ready the prospect is to move.</p>
+          </article>
+          <article class="flow-step-card">
+            <div class="mini-title">Appointment</div>
+            <h3>Booked and synced back.</h3>
+            <p>Qualified conversations move toward the next action.</p>
+          </article>
+        </div>
+
+        <p class="workflow-note">Each score sends the lead down a different route.</p>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container">
+        <div class="section-head center">
+          <div class="eyebrow center">Before &amp; After</div>
+          <h2 class="display display-lg">The same lead. Two very different<br>journeys.</h2>
+        </div>
+
+        <div class="before-after">
+          <article class="card">
+            <div class="step-num">Before</div>
+            <h3 class="card-title">Handled by hand</h3>
+            <ul class="timeline">
+              <li>Lead arrives in an inbox</li>
+              <li>Someone finds time to read it</li>
+              <li>Details are copied into the CRM</li>
+              <li>Priority is decided case by case</li>
+              <li>The response goes out later than planned</li>
+              <li><span class="accent">The lead drifts down the list</span></li>
+            </ul>
+          </article>
+
+          <div class="versus">Versus</div>
+
+          <article class="card card-dark">
+            <div class="step-num" style="color:var(--taupe-300)">With CLOSATIX</div>
+            <h3 class="card-title">Handled by the workflow</h3>
+            <ul class="timeline">
+              <li>Lead enters the workflow automatically</li>
+              <li>AI reviews intent, budget and timeline</li>
+              <li>CRM record created or updated</li>
+              <li>AI Lead Score sets the priority</li>
+              <li>Matching follow-up begins, with fewer manual handoffs</li>
+              <li><span class="accent">Qualified prospects move toward a booking</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--warm reveal" id="benefits">
+      <div class="container">
+        <div class="split">
+          <div>
+            <div class="eyebrow">Benefits</div>
+            <h2 class="display display-lg">Give your team back its<br>most valuable resource:<br><span class="accent" style="color:var(--coffee-500)">time.</span></h2>
+          </div>
+          <div class="benefit-list">
+            <div class="benefit">
+              <div class="check">✓</div>
+              <div>
+                <h3>Faster lead response</h3>
+                <p>Reach people while the inquiry is still front of mind.</p>
+              </div>
+            </div>
+            <div class="benefit">
+              <div class="check">✓</div>
+              <div>
+                <h3>Clear priorities</h3>
+                <p>Agents start the day with an ordered list instead of an inbox.</p>
+              </div>
+            </div>
+            <div class="benefit">
+              <div class="check">✓</div>
+              <div>
+                <h3>Cleaner CRM data</h3>
+                <p>Lead information arrives structured and consistent.</p>
+              </div>
+            </div>
+            <div class="benefit">
+              <div class="check">✓</div>
+              <div>
+                <h3>Less manual work</h3>
+                <p>Copying, tagging and re-sending stop being anyone's job.</p>
+              </div>
+            </div>
+            <div class="benefit">
+              <div class="check">✓</div>
+              <div>
+                <h3>Consistent follow-up</h3>
+                <p>Every lead gets the same standard of communication, every week.</p>
+              </div>
+            </div>
+            <div class="benefit">
+              <div class="check">✓</div>
+              <div>
+                <h3>More selling time</h3>
+                <p>Give agents more time for conversations, relationships and closing business.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container">
+        <div class="section-head center">
+          <div class="eyebrow center">Who It's For</div>
+          <h2 class="display display-lg">Built for teams whose leads are<br>already arriving.</h2>
+        </div>
+
+        <div class="cards-4">
+          <article class="card">
+            <div class="step-num">01</div>
+            <h3 class="card-title">Real Estate Agencies</h3>
+            <p>Several agents sharing one pipeline, where consistency matters.</p>
+          </article>
+          <article class="card">
+            <div class="step-num">02</div>
+            <h3 class="card-title">Brokerages</h3>
+            <p>Higher volume across offices, where routing and clean records decide the pace.</p>
+          </article>
+          <article class="card">
+            <div class="step-num">03</div>
+            <h3 class="card-title">Growing Real Estate Teams</h3>
+            <p>Teams whose manual process no longer keeps up with lead volume.</p>
+          </article>
+          <article class="card">
+            <div class="step-num">04</div>
+            <h3 class="card-title">Independent Professionals</h3>
+            <p>Solo agents who want first response and record-keeping handled for them.</p>
+          </article>
+        </div>
+
+        <div class="statement" style="margin-top:24px">
+          <p>CLOSATIX is best suited for real estate businesses with a consistent flow of inbound leads and a defined sales process.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--beige reveal">
+      <div class="container center">
+        <div class="section-head">
+          <div class="eyebrow center">Integrations</div>
+          <h2 class="display display-lg">Designed to work with the tools<br>behind your sales process.</h2>
+        </div>
+
+        <div class="integration-shell">
+          <div class="integration-pills">
+            <div class="pill">HubSpot</div>
+            <div class="pill">Make</div>
+            <div class="pill">OpenAI</div>
+            <div class="pill">Cal.com</div>
+            <div class="pill">Gmail</div>
+          </div>
+        </div>
+
+        <p style="max-width:700px;margin:18px auto 0;">Examples only — none are mandatory. Your CLOSATIX setup can be configured around the systems your business already uses.</p>
+      </div>
+    </section>
+
+    <section class="section section--dark reveal">
+      <div class="container">
+        <div class="split">
+          <div>
+            <div class="eyebrow">Why CLOSATIX</div>
+            <h2 class="display display-lg">Automation should simplify<br>your business — <span class="accent">not add</span><br><span class="accent">another system to manage.</span></h2>
+            <p class="lead lead-dark" style="margin-top:18px;max-width:42ch;">Most teams don't have a tooling shortage. They have a coordination problem.</p>
+          </div>
+          <div class="philosophy">
+            <div class="philosophy-item">
+              <h3>We connect what you already have</h3>
+              <p>Your existing lead process becomes one coordinated workflow — in the tools your team already knows.</p>
+            </div>
+            <div class="philosophy-item">
+              <h3>We remove steps, not add them</h3>
+              <p>Every automation has to replace manual work, not create something new to maintain.</p>
+            </div>
+            <div class="philosophy-item">
+              <h3>People stay where they matter</h3>
+              <p>The system handles sorting and data entry. Your agents handle the conversations.</p>
+            </div>
+            <div class="philosophy-item">
+              <h3>Built around your process</h3>
+              <p>Qualification criteria, routing and follow-up are defined with your team.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--warm reveal">
+      <div class="container">
+        <div class="cta-card center">
+          <div class="eyebrow center">See It In Action</div>
+          <h2 class="display display-md">See CLOSATIX on your lead flow.</h2>
+          <p style="max-width:640px;margin:14px auto 0;">A short walkthrough can show where automation fits into the process your team already uses.</p>
+          <div style="margin-top:28px;">
+            <a class="btn btn-primary" href="#" data-booking>See It In Action <span class="arrow">→</span></a>
+          </div>
+          <div class="small-note">Designed around your existing sales process</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="faq">
+      <div class="container">
+        <div class="section-head center">
+          <div class="eyebrow center">FAQ</div>
+          <h2 class="display display-lg">Questions worth asking first.</h2>
+        </div>
+
+        <div class="faq-wrap" role="list">
+          <div class="faq-item open">
+            <button class="faq-btn" aria-expanded="true">
+              <span>What is CLOSATIX?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content" style="max-height:240px;">
+              <p>CLOSATIX is an AI-powered lead automation system designed for real estate businesses. It connects lead capture, qualification, CRM updates, follow-up, team notifications and appointment booking into one coordinated workflow.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              <span>Who is CLOSATIX built for?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <p>CLOSATIX is designed for real estate agencies, brokerages, growing teams and independent professionals that already receive inbound leads and want a faster, more consistent way to qualify and act on them.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              <span>Does CLOSATIX replace my CRM?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <p>No. CLOSATIX is designed to work around your existing sales process and tools. It can connect with a CRM and automate repetitive steps rather than forcing your team to replace the systems they already use.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              <span>Can CLOSATIX work with my existing lead sources and tools?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <p>In most cases, yes. The workflow can be configured around compatible forms, lead sources, CRM systems, email tools and booking platforms used by your business.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              <span>How does AI lead qualification work?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <p>The workflow evaluates relevant information such as intent, budget, timeline, financing readiness and other qualification criteria defined for the business. Leads can then be prioritized so the team knows which opportunities require attention first.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              <span>What happens to Hot, Warm and Cold leads?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <p>Each priority can trigger a different workflow. High-intent leads can receive faster follow-up and booking opportunities, while Warm and Cold leads can follow communication paths that better match their readiness.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              <span>Can the system be customized, and how does implementation work?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <p>Yes. Qualification criteria, routing logic, follow-up and integrations can be configured around the business's existing lead process. Implementation begins by mapping the current workflow, identifying repetitive steps and defining where automation should take over.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--beige final-cta reveal">
+      <div class="container">
+        <h2 class="display display-lg">Your leads are already<br>coming in.<br>Make every lead <span class="accent" style="color:var(--coffee-500)">easier to act on.</span></h2>
+        <p>One conversation is enough to see what a connected workflow would look like in your business.</p>
+        <div class="actions">
+          <a class="btn btn-dark" href="#" data-booking>Book a Demo <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="#top" aria-label="CLOSATIX home">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-name">CLOSATIX</span>
+          </a>
+          <p>AI-powered lead automation for modern real estate teams.</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#solutions">Solutions</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#benefits">Benefits</a>
+          <a href="#faq">FAQ</a>
+          <a href="#" data-booking>Book a Demo</a>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 CLOSATIX. All rights reserved.</div>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const BOOKING_URL = "https://cal.com/rami-sebaie/property-consultation";
+
+    // Assign booking URLs consistently
+    document.querySelectorAll('[data-booking]').forEach(link => {
+      link.setAttribute('href', BOOKING_URL);
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    });
+
+    // Header scroll state
+    const header = document.querySelector('.site-header');
+    const onScroll = () => {
+      if (window.scrollY > 12) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('[data-mobile-link]');
+
+    const closeMenu = () => {
+      mobileMenu.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+    };
+    const openMenu = () => {
+      mobileMenu.classList.add('open');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+    };
+
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        if (expanded) closeMenu();
+        else openMenu();
+      });
+    }
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => closeMenu());
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    // Smooth offset scrolling
+    const smoothLinks = document.querySelectorAll('a[href^="#"]');
+    smoothLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const targetId = link.getAttribute('href');
+        if (!targetId || targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (!target) return;
+        e.preventDefault();
+        const y = target.getBoundingClientRect().top + window.pageYOffset - (header.offsetHeight + 18);
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      });
+    });
+
+    // FAQ
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const button = item.querySelector('.faq-btn');
+      const content = item.querySelector('.faq-content');
+
+      button.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+
+        faqItems.forEach(other => {
+          other.classList.remove('open');
+          other.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+          other.querySelector('.faq-content').style.maxHeight = null;
+        });
+
+        if (!isOpen) {
+          item.classList.add('open');
+          button.setAttribute('aria-expanded', 'true');
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // Scroll spy
+    const navLinks = document.querySelectorAll('[data-nav]');
+    const tracked = ['solutions', 'how-it-works', 'benefits', 'faq']
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+
+    const spyObserver = new IntersectionObserver((entries) => {
+      let visible = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a,b) => b.intersectionRatio - a.intersectionRatio);
+
+      if (visible.length) {
+        const activeId = visible[0].target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.dataset.nav === activeId);
+        });
+      }
+    }, {
+      rootMargin: `-${header.offsetHeight + 20}px 0px -45% 0px`,
+      threshold: [0.2, 0.35, 0.55]
+    });
+
+    tracked.forEach(section => spyObserver.observe(section));
+
+    // Reveal on scroll
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.14
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>
