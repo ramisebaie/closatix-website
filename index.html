@@ -1,21 +1,109 @@
 <!doctype html>
+<!--
+  CLOSATIX website — VERSION 3  (17 August 2026)
+
+  If you open an index.html and DON'T see this version block at the top,
+  you are looking at an old copy. Delete it. Keeping "index 23.html",
+  "index 24.html" and similar around is how the wrong file gets deployed.
+
+  New in v3:
+    · All "in under a minute" system-speed claims removed — hero, meta
+      description, Open Graph, Twitter and the capability strip. We have
+      not measured the system yet, so we do not claim a number.
+    · Navigation button now reads "Book a Discovery Call", matching the
+      other primary buttons
+    · New on-page section: Lead Automation Audit (#audit), with a short
+      form. "Get Your Lead Automation Audit" scrolls there instead of
+      opening a Cal.com event that does not exist.
+    · The form validates but sends nothing until AUDIT_FORM_ENDPOINT is
+      set near the bottom of this file. It tells the visitor that
+      plainly rather than faking a confirmation. See the README.
+
+  In v2:
+    · Logo resized and the source file trimmed
+    · CTAs reworked; new FAQ on replacing the sales team
+    · Integrations list corrected for real estate
+    · Open Graph card, favicon, canonical URL and JSON-LD added
+    · Booking buttons given real href values so they work without JS
+    · Privacy Policy and Terms now link to real pages
+-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CLOSATIX | AI Lead Automation for Real Estate</title>
-<meta name="description" content="CLOSATIX turns real estate lead capture, AI qualification, CRM updates, follow-up and appointment booking into one connected operating flow.">
+<meta name="description" content="AI-powered lead qualification and automated follow-up for real estate teams. CLOSATIX turns lead capture, AI qualification, CRM updates, follow-up and appointment booking into one connected operating flow.">
 <meta name="theme-color" content="#19120E">
+
+<!--
+  ===================================================================
+  BEFORE LAUNCH — two things left, then delete this comment
+  ===================================================================
+  1. DOMAIN       Find and replace every "https://closatix.com" in this
+                  file with your real domain. It appears in: canonical,
+                  og:url, og:image, twitter:image and the JSON-LD block.
+
+  2. CAL.COM      Create BOTH event types on your Cal.com account:
+                    closatix-discovery-call   (the main sales call)
+                    lead-automation-audit     (the lower-commitment one)
+                  Both URLs appear as href="" on their buttons AND as
+                  constants near the bottom of this file — find and
+                  replace if you change either.
+
+  Expected folder structure — keep it exactly like this:
+      index.html                    this file
+      privacy.html                  linked from the footer
+      terms.html                    linked from the footer
+      favicon.ico                   browser tab icon (must stay at root)
+      apple-touch-icon.png          iOS home-screen icon (must stay at root)
+      assets/closatix-logo.png      the wordmark (nav + footer)
+      assets/closatix-og.png        1200x630 link-share card
+
+  If assets/closatix-logo.png is ever missing, the site falls back to a
+  text wordmark rather than showing a broken image — so it degrades
+  cleanly, but check the file is actually there after you deploy.
+  ===================================================================
+-->
+
+<link rel="canonical" href="https://closatix.com/">
+
+<!-- Icons -->
+<link rel="icon" href="./favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="CLOSATIX">
+<meta property="og:url" content="https://closatix.com/">
 <meta property="og:title" content="CLOSATIX | AI Lead Automation for Real Estate">
-<meta property="og:description" content="CLOSATIX turns real estate lead capture, AI qualification, CRM updates, follow-up and appointment booking into one connected operating flow.">
+<meta property="og:description" content="AI-powered lead qualification and automated follow-up for real estate teams. CLOSATIX turns lead capture, AI qualification, CRM updates, follow-up and appointment booking into one connected operating flow.">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://closatix.com/assets/closatix-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CLOSATIX — AI lead automation for real estate">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="CLOSATIX | AI Lead Automation for Real Estate">
-<meta name="twitter:description" content="CLOSATIX turns real estate lead capture, AI qualification, CRM updates, follow-up and appointment booking into one connected operating flow.">
+<meta name="twitter:description" content="AI-powered lead qualification and automated follow-up for real estate teams. CLOSATIX turns lead capture, AI qualification, CRM updates, follow-up and appointment booking into one connected operating flow.">
+<meta name="twitter:image" content="https://closatix.com/assets/closatix-og.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CLOSATIX",
+  "url": "https://closatix.com/",
+  "logo": "https://closatix.com/assets/closatix-logo.png",
+  "description": "AI lead automation for real estate teams — capture, qualification, CRM updates, priority routing, follow-up and appointment booking in one connected workflow.",
+  "areaServed": "Worldwide",
+  "knowsAbout": [
+    "Real estate lead management",
+    "AI lead qualification",
+    "CRM automation",
+    "Sales follow-up automation"
+  ]
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,7 +158,10 @@
   /* Layout */
   --maxw:1100px;
   --gutter:clamp(18px, 3.2vw, 40px);
-  --nav-h:74px;
+  --nav-h:80px;
+  /* Intrinsic ratio of closatix-logo.png (900x260) — reserves the exact box
+     before the image loads, so the navigation never shifts on first paint. */
+  --logo-ratio:900/260;
 
   /* Radii */
   --r-sm:8px;
@@ -355,12 +446,18 @@ main{display:block;}
   flex:none;
   line-height:0;
 }
+/* Logo sizing note: the CLOSATIX mark is a tall monogram beside a short
+   wordmark — the letters occupy only ~28% of the file's height. Sizing it
+   like a normal wordmark makes the brand name read smaller than the menu
+   links beside it. These widths are set so the wordmark's cap height lands
+   around 16px against 11.5px navigation links. */
 .brand__logo{
   display:block;
-  width:156px;
+  width:200px;
   height:auto;
+  aspect-ratio:var(--logo-ratio);
   max-width:none;
-  max-height:calc(var(--nav-h) - 20px);
+  max-height:calc(var(--nav-h) - 22px);
   object-fit:contain;
   object-position:left center;
 }
@@ -991,6 +1088,15 @@ main{display:block;}
   margin:var(--space-md) auto 0;
 }
 .cta-card .btn{margin-top:var(--space-lg);}
+/* Two doors out of this section: a call for the ready, an audit for the rest. */
+.cta-card__actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  justify-content:center;
+  margin-top:var(--space-lg);
+}
+.cta-card__actions .btn{margin-top:0;}
 .cta-card__foot{
   margin-top:var(--space-lg);
   font-size:.66rem;
@@ -1009,6 +1115,180 @@ main{display:block;}
   margin:var(--space-md) auto 0;
 }
 .final-cta .btn{margin-top:var(--space-lg);}
+.final-cta__alt{
+  font-size:.88rem;
+  color:var(--muted-text);
+}
+.final-cta__alt a{
+  color:var(--coffee-500);
+  border-bottom:1px solid rgba(122,81,57,.34);
+  transition:border-color .3s var(--ease);
+}
+.final-cta__alt a:hover{border-bottom-color:var(--coffee-500);}
+
+/* --------------------------------------------------
+   Lead Automation Audit — the lower-commitment entry
+   -------------------------------------------------- */
+.audit__intro{
+  margin-top:var(--space-md);
+  color:rgba(224,211,197,.66);
+  font-size:.95rem;
+  max-width:54ch;
+  margin-inline:auto;
+  text-align:center;
+}
+.audit__time{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-top:var(--space-md);
+  font-size:.66rem;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  color:var(--taupe-400);
+}
+.audit__time::before{
+  content:"";
+  width:5px;height:5px;border-radius:50%;
+  background:var(--bronze);
+  flex:none;
+}
+
+.audit__card{
+  margin:clamp(30px,3.6vw,44px) auto 0;
+  max-width:760px;
+  background:linear-gradient(180deg,rgba(76,47,32,.34) 0%, rgba(24,16,11,.58) 100%);
+  border:1px solid rgba(208,183,159,.16);
+  border-radius:var(--r-xl);
+  padding:clamp(24px,3.2vw,40px);
+  box-shadow:0 46px 90px -60px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+.audit-form{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(16px,1.8vw,20px);
+}
+.field{display:flex;flex-direction:column;min-width:0;}
+.field--wide{grid-column:1 / -1;}
+
+.field__label{
+  font-size:.64rem;
+  font-weight:500;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--taupe-400);
+  margin-bottom:9px;
+}
+.field__label .opt{
+  text-transform:none;
+  letter-spacing:.02em;
+  font-size:.72rem;
+  color:rgba(178,143,114,.62);
+  margin-left:6px;
+}
+
+.field__control{
+  width:100%;
+  min-height:48px;
+  padding:12px 15px;
+  font-family:var(--sans);
+  font-size:.94rem;
+  line-height:1.5;
+  color:var(--cream-50);
+  background:rgba(15,10,7,.5);
+  border:1px solid rgba(208,183,159,.18);
+  border-radius:var(--r-sm);
+  transition:border-color .3s var(--ease), background-color .3s var(--ease), box-shadow .3s var(--ease);
+  -webkit-appearance:none;
+  appearance:none;
+}
+.field__control::placeholder{color:rgba(224,211,197,.32);}
+.field__control:hover{border-color:rgba(208,183,159,.3);}
+.field__control:focus{
+  outline:none;
+  border-color:rgba(216,178,140,.72);
+  background:rgba(15,10,7,.72);
+  box-shadow:0 0 0 3px rgba(185,137,97,.12);
+}
+textarea.field__control{min-height:96px;resize:vertical;}
+
+/* Native select arrow replaced so it matches the rest of the system */
+select.field__control{
+  padding-right:40px;
+  background-image:linear-gradient(45deg,transparent 50%,var(--taupe-400) 50%),
+                   linear-gradient(135deg,var(--taupe-400) 50%,transparent 50%);
+  background-position:calc(100% - 19px) calc(50% + 2px), calc(100% - 14px) calc(50% + 2px);
+  background-size:5px 5px, 5px 5px;
+  background-repeat:no-repeat;
+  cursor:pointer;
+}
+select.field__control option{background:var(--espresso-850);color:var(--cream-100);}
+select.field__control:invalid{color:rgba(224,211,197,.32);}
+
+.field__error{
+  font-size:.76rem;
+  color:#DB9C87;
+  margin-top:7px;
+  min-height:0;
+  display:none;
+}
+.field.is-invalid .field__control{
+  border-color:rgba(196,116,90,.7);
+  background:rgba(48,20,14,.4);
+}
+.field.is-invalid .field__error{display:block;}
+
+.audit-form__foot{
+  grid-column:1 / -1;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:14px var(--space-md);
+  margin-top:var(--space-xs);
+}
+.audit-form__note{
+  font-size:.74rem;
+  line-height:1.55;
+  color:rgba(208,183,159,.5);
+  flex:1 1 260px;
+  max-width:44ch;
+}
+
+/* Submission status — never claims success unless a real endpoint replied */
+.audit-form__status{
+  grid-column:1 / -1;
+  display:none;
+  padding:15px 17px;
+  border-radius:var(--r-md);
+  font-size:.88rem;
+  line-height:1.55;
+  border:1px solid transparent;
+}
+.audit-form__status.is-shown{display:block;}
+.audit-form__status a{color:inherit;text-decoration:underline;text-underline-offset:3px;}
+.audit-form__status--info{
+  background:rgba(185,137,97,.1);
+  border-color:rgba(208,183,159,.28);
+  color:var(--cream-150);
+}
+.audit-form__status--ok{
+  background:rgba(126,145,118,.13);
+  border-color:rgba(126,145,118,.4);
+  color:#DCE6D6;
+}
+.audit-form__status--error{
+  background:rgba(180,113,90,.13);
+  border-color:rgba(180,113,90,.42);
+  color:#F0CDC0;
+}
+
+@media (max-width:700px){
+  .audit-form{grid-template-columns:minmax(0,1fr);}
+  .audit-form__foot{flex-direction:column;align-items:stretch;}
+  .audit-form__foot .btn{width:100%;}
+  .audit-form__note{max-width:none;text-align:center;}
+}
 
 /* ==================================================
    8. FAQ
@@ -1081,10 +1361,10 @@ main{display:block;}
   max-width:34ch;
 }
 .footer .brand__logo{
-  width:186px;
+  width:246px;
   height:auto;
   max-width:none;
-  max-height:78px;
+  max-height:none;
 }
 .footer__nav{
   display:flex;
@@ -1126,7 +1406,7 @@ main{display:block;}
 
 /* Tablet landscape */
 @media (max-width:1024px){
-  .brand__logo{width:140px;}
+  .brand__logo{width:178px;}
   .steps,.features,.audience{grid-template-columns:repeat(2,minmax(0,1fr));}
   .step-card:not(:last-child)::after{display:none;}
 
@@ -1177,16 +1457,16 @@ main{display:block;}
 
 /* Mobile navigation breakpoint */
 @media (max-width:800px){
-  :root{--nav-h:64px;}
+  :root{--nav-h:68px;}
   .nav__links,.nav .nav__cta{display:none;}
   .nav__toggle{display:flex;}
-  .brand__logo{width:126px;max-height:calc(var(--nav-h) - 18px);}
+  .brand__logo{width:158px;max-height:calc(var(--nav-h) - 18px);}
 }
 
 /* Phones */
 @media (max-width:640px){
   :root{--gutter:19px;}
-  .footer .brand__logo{width:182px;max-height:70px;}
+  .footer .brand__logo{width:208px;max-height:none;}
   .steps,.features,.audience{grid-template-columns:minmax(0,1fr);}
 
   h1,.h1{line-height:1.1;}
@@ -1226,8 +1506,8 @@ main{display:block;}
 
 /* Small phones */
 @media (max-width:400px){
-  .brand__logo{width:121px;}
-  .footer .brand__logo{width:180px;}
+  .brand__logo{width:140px;}
+  .footer .brand__logo{width:186px;}
   .engine{padding:15px;}
   .eng-block,.eng-row,.eng-score{padding:12px 13px;}
   .eng-row{flex-wrap:wrap;gap:4px;}
@@ -1289,6 +1569,21 @@ h2,.h2{
   transition:opacity .3s var(--ease);
 }
 .brand:hover .brand__logo{opacity:.96;}
+
+/* Text wordmark — shown only if the logo file is missing or fails to load,
+   so a broken path never exposes raw alt text in the navigation. */
+.brand__wordmark{
+  font-family:var(--serif);
+  font-size:1.16rem;
+  font-weight:600;
+  letter-spacing:.24em;
+  line-height:1;
+  color:var(--cream-50);
+  white-space:nowrap;
+}
+.footer .brand__wordmark{font-size:1.4rem;}
+@media (max-width:640px){.brand__wordmark{font-size:1rem;letter-spacing:.2em;}}
+[hidden]{display:none !important;}
 
 /* Buttons are the main hover targets — interaction implies clickability */
 .btn{
@@ -1700,8 +1995,16 @@ h2,.h2{
   line-height:1.55;
   letter-spacing:.002em;
   color:rgba(240,227,212,.9);
-  max-width:44ch;
+  max-width:46ch;
   margin-bottom:clamp(16px,1.8vw,20px);
+}
+/* The one concrete number on the page — it should read as a fact, not decoration. */
+.hero__mark{
+  font-style:normal;
+  font-weight:500;
+  color:#EBD3B8;
+  white-space:nowrap;
+  box-shadow:inset 0 -1px 0 rgba(185,137,97,.55);
 }
 
 .hero__body{
@@ -2242,10 +2545,11 @@ h2,.h2{
     <a class="brand" href="#top" aria-label="CLOSATIX — home">
       <img
         class="brand__logo"
-        src="./closatix-logo.png"
+        src="./assets/closatix-logo.png"
         alt="CLOSATIX"
         decoding="async"
       >
+      <span class="brand__wordmark" hidden>CLOSATIX</span>
     </a>
 
     <nav class="nav__links" aria-label="Primary">
@@ -2255,7 +2559,7 @@ h2,.h2{
       <a class="nav__link" href="#faq" data-nav="faq">FAQ</a>
     </nav>
 
-    <a data-magnetic class="btn btn--primary nav__cta" data-booking>Book a Demo</a>
+    <a data-magnetic class="btn btn--primary nav__cta" data-booking href="https://cal.com/rami-sebaie/closatix-discovery-call" target="_blank" rel="noopener">Book a Discovery Call</a>
 
     <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
       <svg class="icon-open" viewBox="0 0 18 18" fill="none" aria-hidden="true">
@@ -2273,7 +2577,7 @@ h2,.h2{
       <li><a href="#how-it-works" data-nav="how-it-works">How It Works</a></li>
       <li><a href="#benefits" data-nav="benefits">Benefits</a></li>
       <li><a href="#faq" data-nav="faq">FAQ</a></li>
-      <li><a class="nav__mobile-cta" data-booking>Book a Demo</a></li>
+      <li><a class="nav__mobile-cta" data-booking href="https://cal.com/rami-sebaie/closatix-discovery-call" target="_blank" rel="noopener">Book a Discovery Call</a></li>
     </ul>
   </div>
 </header>
@@ -2294,13 +2598,13 @@ h2,.h2{
             <span class="mask"><span class="mask__i">into a <em>clear next move.</em></span></span>
           </h1>
 
-          <p class="hero__sub">From first inquiry to qualified conversation — CLOSATIX keeps the lead process moving.</p>
+          <p class="hero__sub">AI-powered lead qualification and automated follow-up — <em class="hero__mark">every lead, every hour.</em></p>
 
           <p class="hero__body">Capture, qualification, CRM updates, priority routing, follow-up and booking work as one connected system — so your team can focus on the opportunities that deserve attention.</p>
 
           <div class="hero__actions">
-            <a data-magnetic class="btn btn--primary" data-booking>Book a Demo <span class="btn__arrow" aria-hidden="true">→</span></a>
-            <a class="btn btn--ghost" href="#workflow">See the workflow</a>
+            <a data-magnetic class="btn btn--primary" data-booking href="https://cal.com/rami-sebaie/closatix-discovery-call" target="_blank" rel="noopener">Book a Discovery Call <span class="btn__arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn--ghost" href="#workflow">See How CLOSATIX Works</a>
           </div>
 
           <p class="trust">Built for real estate teams with consistent inbound lead flow</p>
@@ -2679,8 +2983,8 @@ h2,.h2{
       <div class="section-head section-head--center reveal">
         <span class="eyebrow">Before &amp; After</span>
         <h2 id="compare-title">
-          <span class="ln">The same lead. Two very different</span>
-          <span class="ln">journeys.</span>
+          <span class="ln">The same lead.</span>
+          <span class="ln">Two very different journeys.</span>
         </h2>
       </div>
 
@@ -2820,8 +3124,8 @@ h2,.h2{
         </article>
         <article class="audience-card">
           <span class="index-num">04</span>
-          <h3>Independent Professionals</h3>
-          <p>Solo agents who want first response and record-keeping handled for them.</p>
+          <h3>New Development &amp; Luxury Sales</h3>
+          <p>High-value inventory and paid campaigns, where a slow reply is expensive.</p>
         </article>
       </div>
 
@@ -2842,10 +3146,12 @@ h2,.h2{
 
       <div class="integrations reveal">
         <span class="integration-pill">HubSpot</span>
-        <span class="integration-pill">Make</span>
-        <span class="integration-pill">OpenAI</span>
+        <span class="integration-pill">Follow Up Boss</span>
+        <span class="integration-pill">Salesforce</span>
+        <span class="integration-pill">Zapier</span>
         <span class="integration-pill">Cal.com</span>
         <span class="integration-pill">Gmail</span>
+        <span class="integration-pill">Outlook</span>
       </div>
 
       <p class="integrations__note reveal">Examples only — none are mandatory. Your CLOSATIX setup can be configured around the systems your business already uses.</p>
@@ -2897,7 +3203,10 @@ h2,.h2{
         <span class="eyebrow">See It In Action</span>
         <h2 id="cta-title">Turn your lead flow into a system your team can trust.</h2>
         <p>See exactly how CLOSATIX can remove the manual gaps between a new inquiry and the next qualified conversation.</p>
-        <a data-magnetic class="btn btn--primary" data-booking>See It In Action <span class="btn__arrow" aria-hidden="true">→</span></a>
+        <div class="cta-card__actions">
+          <a data-magnetic class="btn btn--primary" data-booking href="https://cal.com/rami-sebaie/closatix-discovery-call" target="_blank" rel="noopener">Book a Discovery Call <span class="btn__arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost" href="#audit">Get Your Lead Automation Audit</a>
+        </div>
         <p class="cta-card__foot">Designed around your existing sales process</p>
       </div>
     </div>
@@ -2932,18 +3241,30 @@ h2,.h2{
             </button>
           </h3>
           <div class="faq__panel" id="faq-p2" role="region" aria-labelledby="faq-t2">
-            <div class="faq__panel-inner">CLOSATIX is designed for real estate agencies, brokerages, growing teams and independent professionals that already receive inbound leads and want a faster, more consistent way to qualify and act on them.</div>
+            <div class="faq__panel-inner">CLOSATIX is designed for real estate agencies, brokerages, growing teams and new development or luxury sales teams that already receive inbound leads and want a faster, more consistent way to qualify and act on them. It is a fit where lead flow is consistent enough that response time and prioritisation actually affect results.</div>
           </div>
         </div>
 
         <div class="faq__item">
           <h3>
             <button class="faq__trigger" id="faq-t3" aria-expanded="false" aria-controls="faq-p3">
-              <span>Does CLOSATIX replace my CRM?</span>
+              <span>Will CLOSATIX replace my sales team?</span>
               <span class="faq__icon" aria-hidden="true"></span>
             </button>
           </h3>
           <div class="faq__panel" id="faq-p3" role="region" aria-labelledby="faq-t3">
+            <div class="faq__panel-inner">No. CLOSATIX does not replace your sales team — it removes the work that slows them down. The system qualifies incoming leads, organises the data and sends the first follow-up. The conversations, the relationships and every final decision stay with your agents. The intent is to give your team more time for the calls that close, not fewer people to make them.</div>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <h3>
+            <button class="faq__trigger" id="faq-t3b" aria-expanded="false" aria-controls="faq-p3b">
+              <span>Does CLOSATIX replace my CRM?</span>
+              <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq__panel" id="faq-p3b" role="region" aria-labelledby="faq-t3b">
             <div class="faq__panel-inner">No. CLOSATIX is designed to work around your existing sales process and tools. It can connect with a CRM and automate repetitive steps rather than forcing your team to replace the systems they already use.</div>
           </div>
         </div>
@@ -2999,17 +3320,114 @@ h2,.h2{
     </div>
   </section>
 
+  <!-- ==================== LEAD AUTOMATION AUDIT ==================== -->
+  <section class="section dark" id="audit" aria-labelledby="audit-title">
+    <div class="container">
+      <div class="section-head section-head--center reveal">
+        <span class="eyebrow">Lead Automation Audit</span>
+        <h2 id="audit-title">See where your lead flow is <em>losing time.</em></h2>
+        <p class="audit__intro">Tell us how leads reach you today. We map your current path from
+          first inquiry to booked appointment, and show you the specific points where
+          opportunities are slipping — before any conversation about working together.</p>
+        <p class="audit__time">Takes less than 1 minute</p>
+      </div>
+
+      <div class="audit__card reveal">
+        <form class="audit-form" id="auditForm" novalidate>
+
+          <div class="field">
+            <label class="field__label" for="af-name">Name</label>
+            <input class="field__control" id="af-name" name="name" type="text"
+                   autocomplete="name" placeholder="Your full name" required
+                   aria-describedby="af-name-err">
+            <span class="field__error" id="af-name-err">Please enter your name.</span>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="af-company">Company Name</label>
+            <input class="field__control" id="af-company" name="company" type="text"
+                   autocomplete="organization" placeholder="Your brokerage or agency" required
+                   aria-describedby="af-company-err">
+            <span class="field__error" id="af-company-err">Please enter your company name.</span>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="af-email">Work Email</label>
+            <input class="field__control" id="af-email" name="email" type="email"
+                   autocomplete="email" placeholder="you@company.com" required
+                   aria-describedby="af-email-err">
+            <span class="field__error" id="af-email-err">Please enter a valid email address.</span>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="af-website">Company Website</label>
+            <input class="field__control" id="af-website" name="website" type="text"
+                   autocomplete="url" placeholder="yourcompany.com" required
+                   aria-describedby="af-website-err">
+            <span class="field__error" id="af-website-err">Please enter your website address.</span>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="af-leads">Monthly Leads</label>
+            <select class="field__control" id="af-leads" name="monthly_leads" required
+                    aria-describedby="af-leads-err">
+              <option value="" disabled selected>Select a range</option>
+              <option value="under-50">Fewer than 50</option>
+              <option value="50-200">50 – 200</option>
+              <option value="200-500">200 – 500</option>
+              <option value="500-plus">More than 500</option>
+            </select>
+            <span class="field__error" id="af-leads-err">Please choose a range.</span>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="af-crm">Current CRM</label>
+            <select class="field__control" id="af-crm" name="crm" required
+                    aria-describedby="af-crm-err">
+              <option value="" disabled selected>Select your CRM</option>
+              <option value="hubspot">HubSpot</option>
+              <option value="salesforce">Salesforce</option>
+              <option value="follow-up-boss">Follow Up Boss</option>
+              <option value="kvcore">kvCORE</option>
+              <option value="zoho">Zoho</option>
+              <option value="spreadsheets">Spreadsheets or none</option>
+              <option value="other">Other</option>
+            </select>
+            <span class="field__error" id="af-crm-err">Please choose an option.</span>
+          </div>
+
+          <div class="field field--wide">
+            <label class="field__label" for="af-challenge">Biggest Lead Management Challenge</label>
+            <textarea class="field__control" id="af-challenge" name="challenge" rows="3"
+                      placeholder="In one or two lines — what breaks most often?" required
+                      aria-describedby="af-challenge-err"></textarea>
+            <span class="field__error" id="af-challenge-err">Please tell us briefly what the challenge is.</span>
+          </div>
+
+          <p class="audit-form__status" id="auditStatus" role="status" aria-live="polite"></p>
+
+          <div class="audit-form__foot">
+            <button class="btn btn--primary" type="submit">
+              Request My Audit <span class="btn__arrow" aria-hidden="true">→</span>
+            </button>
+            <p class="audit-form__note">No sales sequence. You get the audit, and a short note on
+              what we would change first.</p>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </section>
+
   <!-- ==================== FINAL CTA ==================== -->
   <section class="section bg-beige final-cta" aria-labelledby="final-title">
     <div class="container reveal">
       <h2 id="final-title">
-        <span class="ln">Your leads are already</span>
-        <span class="ln">coming in.</span>
-        <span class="ln">Make every lead <em>easier to act</em></span>
-        <span class="ln"><em>on.</em></span>
+        <span class="ln">Your leads are already coming in.</span>
+        <span class="ln">Make every one <em>easier to act on.</em></span>
       </h2>
       <p>See what changes when every lead enters a clear, connected path from first inquiry to next action.</p>
-      <a data-magnetic class="btn btn--dark" data-booking>Book a Demo <span class="btn__arrow" aria-hidden="true">→</span></a>
+      <a data-magnetic class="btn btn--dark" data-booking href="https://cal.com/rami-sebaie/closatix-discovery-call" target="_blank" rel="noopener">Book a Discovery Call <span class="btn__arrow" aria-hidden="true">→</span></a>
     </div>
   </section>
 
@@ -3023,11 +3441,11 @@ h2,.h2{
         <a class="brand" href="#top" aria-label="CLOSATIX — back to top">
           <img
             class="brand__logo"
-            src="./closatix-logo.png"
+            src="./assets/closatix-logo.png"
             alt="CLOSATIX"
-            loading="lazy"
             decoding="async"
           >
+          <span class="brand__wordmark" hidden>CLOSATIX</span>
         </a>
         <p class="footer__tagline">AI-powered lead automation for modern real estate teams.</p>
       </div>
@@ -3037,15 +3455,15 @@ h2,.h2{
         <a href="#how-it-works">How It Works</a>
         <a href="#benefits">Benefits</a>
         <a href="#faq">FAQ</a>
-        <a data-booking>Book a Demo</a>
+        <a data-booking href="https://cal.com/rami-sebaie/closatix-discovery-call" target="_blank" rel="noopener">Book a Discovery Call</a>
       </nav>
     </div>
 
     <div class="footer__bottom">
       <span>© 2026 CLOSATIX. All rights reserved.</span>
       <span class="footer__legal">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms</a>
+        <a href="./privacy.html">Privacy Policy</a>
+        <a href="./terms.html">Terms</a>
       </span>
     </div>
   </div>
@@ -3056,8 +3474,22 @@ h2,.h2{
   "use strict";
 
   /* ---------- Config ---------- */
-  // TEMPORARY: replace with the dedicated CLOSATIX Sales Demo URL before launch.
+  /* Booking link. Also hard-coded as href="" on every button, so they still
+     work if this script fails or is blocked. Change it in both places. */
   const BOOKING_URL = "https://cal.com/rami-sebaie/closatix-discovery-call";
+
+  /* ---------------------------------------------------------------
+     AUDIT FORM DELIVERY — deliberately empty.
+
+     While this is "", the form validates properly but does NOT send
+     anything anywhere, and it says so to the visitor rather than
+     pretending to have submitted. Nothing is silently lost.
+
+     To switch it on, see the README. Shortest path: deploy to Netlify
+     and set AUDIT_FORM_ENDPOINT = "netlify".
+     --------------------------------------------------------------- */
+  const AUDIT_FORM_ENDPOINT = "";
+  const CONTACT_EMAIL = "hello@closatix.com";
   const MOBILE_BREAKPOINT = 800;
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -3074,6 +3506,148 @@ h2,.h2{
       el.setAttribute("href", BOOKING_URL);
       el.setAttribute("target", "_blank");
       el.setAttribute("rel", "noopener");
+    });
+  }
+
+  /* ---------- 1b. Logo fallback ----------
+     If closatix-logo.png is missing or misnamed, swap in the text wordmark
+     instead of letting the browser render raw alt text in the navigation. */
+  function initLogoFallback() {
+    document.querySelectorAll(".brand__logo").forEach(function (img) {
+      function fallBack() {
+        if (img.hidden) return;
+        img.hidden = true;
+        const wordmark = img.parentNode.querySelector(".brand__wordmark");
+        if (wordmark) wordmark.hidden = false;
+      }
+      img.addEventListener("error", fallBack);
+      if (img.complete && img.naturalWidth === 0) fallBack();
+    });
+  }
+
+  /* ---------- 1c. Audit form ----------
+     Validates on the client. Sends nothing unless AUDIT_FORM_ENDPOINT is set —
+     and when it isn't, it tells the visitor plainly instead of faking success. */
+  function initAuditForm() {
+    const form = document.getElementById("auditForm");
+    const status = document.getElementById("auditStatus");
+    if (!form || !status) return;
+
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const SITE_RE = /^(https?:\/\/)?[^\s.]+\.[^\s]{2,}$/;
+
+    function fieldOf(control) { return control.closest(".field"); }
+
+    function validate(control) {
+      const value = control.value.trim();
+      let ok = value.length > 0;
+      if (ok && control.type === "email") ok = EMAIL_RE.test(value);
+      if (ok && control.name === "website") ok = SITE_RE.test(value);
+      if (ok && control.name === "name") ok = value.length >= 2;
+      if (ok && control.name === "challenge") ok = value.length >= 10;
+      fieldOf(control).classList.toggle("is-invalid", !ok);
+      control.setAttribute("aria-invalid", ok ? "false" : "true");
+      return ok;
+    }
+
+    const controls = Array.prototype.slice.call(form.querySelectorAll("[required]"));
+
+    controls.forEach(function (control) {
+      // Only start showing errors once the visitor has actually left the field.
+      control.addEventListener("blur", function () { validate(control); });
+      control.addEventListener("input", function () {
+        if (fieldOf(control).classList.contains("is-invalid")) validate(control);
+      });
+      control.addEventListener("change", function () {
+        if (fieldOf(control).classList.contains("is-invalid")) validate(control);
+      });
+    });
+
+    function say(kind, html) {
+      status.className = "audit-form__status is-shown audit-form__status--" + kind;
+      status.innerHTML = html;
+    }
+
+    function values() {
+      const out = {};
+      controls.forEach(function (c) { out[c.name] = c.value.trim(); });
+      return out;
+    }
+
+    function mailtoFallback(data) {
+      const lines = [
+        "Name: " + data.name,
+        "Company: " + data.company,
+        "Work email: " + data.email,
+        "Website: " + data.website,
+        "Monthly leads: " + data.monthly_leads,
+        "Current CRM: " + data.crm,
+        "",
+        "Biggest challenge:",
+        data.challenge
+      ].join("\n");
+      return "mailto:" + CONTACT_EMAIL +
+             "?subject=" + encodeURIComponent("Lead Automation Audit — " + data.company) +
+             "&body=" + encodeURIComponent(lines);
+    }
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const results = controls.map(validate);
+      if (results.indexOf(false) !== -1) {
+        const firstBad = controls[results.indexOf(false)];
+        firstBad.focus();
+        say("error", "Please complete the highlighted fields.");
+        return;
+      }
+
+      const data = values();
+
+      /* No endpoint configured — be honest about it and hand the visitor a
+         route that actually works, rather than showing a fake confirmation. */
+      if (!AUDIT_FORM_ENDPOINT) {
+        say("info",
+          "<strong>This form isn't connected to a mailbox yet.</strong><br>" +
+          "Nothing was sent. Your answers are ready to email instead — " +
+          "<a href=\"" + mailtoFallback(data) + "\">open a pre-filled email</a>, " +
+          "or write to " + CONTACT_EMAIL + " directly.");
+        return;
+      }
+
+      const button = form.querySelector("button[type=submit]");
+      const original = button.innerHTML;
+      button.disabled = true;
+      button.textContent = "Sending…";
+      say("info", "Sending your details…");
+
+      const target = AUDIT_FORM_ENDPOINT === "netlify" ? "/" : AUDIT_FORM_ENDPOINT;
+      const options = AUDIT_FORM_ENDPOINT === "netlify"
+        ? { method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(Object.assign({ "form-name": "audit" }, data)).toString() }
+        : { method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify(data) };
+
+      fetch(target, options)
+        .then(function (response) {
+          if (!response.ok) throw new Error("HTTP " + response.status);
+          form.reset();
+          controls.forEach(function (c) { fieldOf(c).classList.remove("is-invalid"); });
+          say("ok", "<strong>Thank you — we have your details.</strong><br>" +
+                    "We will send your audit within two business days.");
+        })
+        .catch(function () {
+          say("error",
+            "<strong>That didn't go through.</strong><br>" +
+            "Please try again, or email us at " +
+            "<a href=\"" + mailtoFallback(data) + "\">" + CONTACT_EMAIL + "</a>.");
+        })
+        .then(function () {
+          button.disabled = false;
+          button.innerHTML = original;
+        });
     });
   }
 
@@ -3267,6 +3841,8 @@ h2,.h2{
   /* ---------- Init ---------- */
   function init() {
     initBookingLinks();
+    initLogoFallback();
+    initAuditForm();
     initMobileNav();
     initScrollSpy();
     initFaq();

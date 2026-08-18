@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy Policy | CLOSATIX</title>
+<meta name="description" content="How CLOSATIX collects, uses and protects personal data — for website visitors and for the lead data we process on behalf of clients.">
+<meta name="theme-color" content="#19120E">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="./favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --espresso-900:#17100C; --espresso-850:#21150F;
+  --coffee-700:#3B2419;   --coffee-500:#7A5139;
+  --taupe-300:#D0B79F;    --taupe-400:#B28F72;
+  --cream-50:#FCF8F1;     --cream-100:#F6EEE4;
+  --ink:#20130D;          --muted:#70645B;
+  --line:rgba(58,40,30,.13);
+  --serif:"Cinzel",Georgia,serif;
+  --serif-accent:"Cormorant Garamond",Georgia,serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --nav-h:80px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 18px);}
+body{
+  margin:0;background:var(--cream-100);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.72;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+img{max-width:100%;display:block;}
+a{color:var(--coffee-500);text-decoration:none;border-bottom:1px solid rgba(122,81,57,.3);transition:border-color .3s var(--ease);}
+a:hover{border-bottom-color:var(--coffee-500);}
+:focus-visible{outline:2px solid var(--coffee-500);outline-offset:3px;border-radius:4px;}
+
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(23,16,12,.94);
+  -webkit-backdrop-filter:blur(16px) saturate(115%);
+  backdrop-filter:blur(16px) saturate(115%);
+  border-bottom:1px solid rgba(192,170,151,.10);
+}
+.nav__inner{
+  height:var(--nav-h);max-width:820px;margin-inline:auto;
+  padding-inline:clamp(18px,3.2vw,32px);
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.brand{display:inline-flex;align-items:center;line-height:0;border:0;}
+.brand__logo{width:190px;height:auto;aspect-ratio:900/260;max-height:calc(var(--nav-h) - 22px);object-fit:contain;object-position:left center;}
+.brand__wordmark{
+  font-family:var(--serif);font-size:1.16rem;font-weight:600;
+  letter-spacing:.24em;line-height:1;color:var(--cream-50);white-space:nowrap;
+}
+[hidden]{display:none !important;}
+.nav__back{
+  font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(240,232,221,.66);border:0;white-space:nowrap;
+}
+.nav__back:hover{color:var(--cream-50);border:0;}
+
+.wrap{max-width:820px;margin-inline:auto;padding:clamp(48px,6vw,84px) clamp(18px,3.2vw,32px) clamp(60px,7vw,96px);}
+
+.eyebrow{
+  display:flex;align-items:center;gap:12px;
+  font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--coffee-500);margin:0 0 18px;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:currentColor;opacity:.55;flex:none;}
+
+h1{
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(1.9rem,1.5rem + 1.6vw,2.7rem);
+  line-height:1.12;letter-spacing:.004em;margin:0 0 14px;text-wrap:balance;
+}
+.updated{color:var(--muted);font-size:.86rem;margin:0 0 8px;}
+
+.notice{
+  margin:28px 0 40px;padding:20px 24px;
+  background:rgba(255,252,247,.8);
+  border-left:2px solid var(--coffee-500);
+  border-radius:0 12px 12px 0;
+  box-shadow:0 18px 45px -42px rgba(37,20,12,.45);
+  font-size:.93rem;color:#4A4038;
+}
+.notice strong{color:var(--coffee-700);}
+
+h2{
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(1.12rem,1.04rem + .35vw,1.3rem);
+  line-height:1.3;letter-spacing:.004em;color:var(--coffee-700);
+  margin:44px 0 12px;padding-top:22px;border-top:1px solid var(--line);
+}
+h2:first-of-type{border-top:0;padding-top:0;}
+h3{font-size:.98rem;font-weight:600;margin:22px 0 6px;color:var(--ink);}
+p{margin:0 0 14px;color:#3A312B;}
+ul{margin:0 0 16px;padding-left:20px;}
+li{margin-bottom:7px;color:#3A312B;}
+.fill{color:#A5442A;font-weight:600;}
+
+table{width:100%;border-collapse:collapse;margin:16px 0 22px;font-size:.9rem;}
+th,td{text-align:left;padding:11px 13px;border:1px solid var(--line);vertical-align:top;}
+th{background:#F1E5D6;font-weight:600;color:var(--coffee-700);font-size:.82rem;letter-spacing:.03em;}
+
+.footer{background:linear-gradient(160deg,#180f0b,#0f0906);color:rgba(224,211,197,.6);border-top:1px solid rgba(208,183,159,.10);}
+.footer__inner{
+  max-width:820px;margin-inline:auto;
+  padding:34px clamp(18px,3.2vw,32px);
+  display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:space-between;
+  font-size:.8rem;
+}
+.footer a{color:rgba(224,211,197,.72);border:0;}
+.footer a:hover{color:var(--cream-50);border:0;}
+.footer nav{display:flex;flex-wrap:wrap;gap:10px 22px;}
+
+@media (max-width:640px){
+  .brand__logo{width:152px;}
+  .nav__back{font-size:.64rem;letter-spacing:.12em;}
+  .footer__inner{flex-direction:column;align-items:flex-start;}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition-duration:.001ms !important;}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="./index.html" aria-label="CLOSATIX — home">
+      <img class="brand__logo" src="./assets/closatix-logo.png" alt="CLOSATIX" decoding="async">
+      <span class="brand__wordmark" hidden>CLOSATIX</span>
+    </a>
+    <a class="nav__back" href="./index.html">&larr; Back to site</a>
+  </div>
+</header>
+
+<main class="wrap">
+<span class="eyebrow">Legal</span>
+<h1>Privacy Policy</h1>
+<p class="updated">Last updated: <span class="fill">[DATE]</span></p>
+<div class="notice">
+  <strong>Template — needs review before you publish.</strong> Every value in
+  <span class="fill">this colour</span> is a placeholder you must fill in, and this text
+  has not been checked against the law of any jurisdiction. Have a lawyer review it once
+  you know your registered entity and where your clients are based, then delete this box.
+</div>
+
+<h2>1. Who we are</h2>
+<p>CLOSATIX (<span class="fill">[REGISTERED LEGAL ENTITY NAME]</span>, <span class="fill">[REGISTERED ADDRESS]</span>) provides AI lead automation services to real estate businesses. In this policy, "we", "us" and "our" mean CLOSATIX.</p>
+<p>For questions about this policy or about how we handle data, contact <a href="mailto:privacy@closatix.com">privacy@closatix.com</a>.</p>
+
+<h2>2. Two different roles</h2>
+<p>This is the most important thing to understand about how we handle data, because we act in two distinct capacities.</p>
+<h3>As a controller — visitors to this website</h3>
+<p>When you visit closatix.com or book a call with us, we decide what we collect and why. That is described in sections 3 to 7.</p>
+<h3>As a processor — our clients' leads</h3>
+<p>When we operate the CLOSATIX system for a client, that client's prospect and lead data is processed strictly on that client's instructions. The client is the controller of that data; we are a processor acting on their behalf. We do not use it for our own purposes, we do not sell it, and we do not use it to train AI models. That relationship is governed by our services agreement with the client, not by this policy. If you are a prospect of one of our clients and want your data removed, contact that business directly — they control it.</p>
+
+<h2>3. What we collect from website visitors</h2>
+<table>
+  <tr><th>Data</th><th>Why</th><th>Basis</th></tr>
+  <tr><td>Name, email, company, phone (if you submit them)</td><td>To respond to your enquiry and arrange a demo</td><td>Your request / our legitimate interest</td></tr>
+  <tr><td>Booking details via our scheduling provider</td><td>To schedule and hold the meeting</td><td>Your request</td></tr>
+  <tr><td>Meeting notes and correspondence</td><td>To manage the sales conversation</td><td>Legitimate interest</td></tr>
+  <tr><td>Basic technical data (IP, browser, pages viewed)</td><td>Security and understanding how the site is used</td><td>Legitimate interest</td></tr>
+</table>
+<p>We do not knowingly collect special-category data, and we do not knowingly collect data from anyone under 16.</p>
+
+<h2>4. Cookies and analytics</h2>
+<p><span class="fill">[Choose one and delete the other.]</span></p>
+<p><span class="fill">Option A — no tracking:</span> This website does not set analytics or advertising cookies. Only cookies strictly necessary to serve the page are used.</p>
+<p><span class="fill">Option B — analytics in use:</span> We use <span class="fill">[provider name]</span> to understand how the site is used. It sets cookies that record pages viewed and approximate location. You can refuse them without losing access to any part of this site. <span class="fill">[If you operate in the EU/UK you will also need a consent banner — a line in a policy is not sufficient.]</span></p>
+
+<h2>5. Who we share data with</h2>
+<p>We share data only with providers that help us run the business, each bound by contract to protect it:</p>
+<ul>
+  <li>Website and email hosting</li>
+  <li>Scheduling and calendar tools</li>
+  <li>Our own CRM</li>
+  <li>Automation and AI processing providers used to deliver the service</li>
+  <li>Payment and accounting providers</li>
+</ul>
+<p>A current list of the providers that process client lead data is maintained and made available to clients on request. We do not sell personal data, and we do not share it for advertising.</p>
+
+<h2>6. International transfers</h2>
+<p>Our providers may process data outside <span class="fill">[YOUR COUNTRY]</span>. Where that happens we rely on <span class="fill">[e.g. standard contractual clauses / adequacy decisions]</span> to keep the data protected.</p>
+
+<h2>7. How long we keep it</h2>
+<ul>
+  <li><strong>Enquiries that don't become clients:</strong> up to <span class="fill">[24]</span> months, then deleted.</li>
+  <li><strong>Client records:</strong> for the length of the contract plus <span class="fill">[6]</span> years for accounting and legal purposes.</li>
+  <li><strong>Client lead data we process:</strong> deleted or returned within 30 days of the contract ending, unless the law requires otherwise.</li>
+</ul>
+
+<h2>8. Your rights</h2>
+<p>Depending on where you live, you may have the right to access your data, correct it, delete it, restrict or object to how we use it, receive a portable copy, and withdraw consent at any time. To exercise any of these, email <a href="mailto:privacy@closatix.com">privacy@closatix.com</a>. We will respond within <span class="fill">[30]</span> days.</p>
+<p>If you are not satisfied with our response, you may complain to your local data protection authority (<span class="fill">[name the relevant authority for your jurisdiction]</span>).</p>
+
+<h2>9. Security</h2>
+<p>We use access controls, encryption in transit, scoped credentials limited to what each integration needs, and restrict access to personnel who require it. No system is perfectly secure, but if a breach affects your personal data we will notify you and the relevant authority as required by law.</p>
+
+<h2>10. AI processing</h2>
+<p>Our service uses AI models to assess and prioritise lead enquiries. Lead content is sent to third-party AI providers for that purpose. We use providers on terms that do not permit client data to be used for model training. AI outputs are advisory and are reviewed within our clients' own sales processes — they are not used to make automated decisions producing legal effects.</p>
+
+<h2>11. Changes</h2>
+<p>We may update this policy. The date at the top always reflects the current version, and material changes will be communicated to active clients directly.</p>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <span>&copy; 2026 CLOSATIX. All rights reserved.</span>
+    <nav aria-label="Legal">
+      <a href="./index.html">Home</a>
+      <a href="./privacy.html">Privacy Policy</a>
+      <a href="./terms.html">Terms</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function () {
+  document.querySelectorAll(".brand__logo").forEach(function (img) {
+    function fallBack() {
+      if (img.hidden) return;
+      img.hidden = true;
+      var w = img.parentNode.querySelector(".brand__wordmark");
+      if (w) w.hidden = false;
+    }
+    img.addEventListener("error", fallBack);
+    if (img.complete && img.naturalWidth === 0) fallBack();
+  });
+})();
+</script>
+</body>
+</html>
