@@ -1,31 +1,29 @@
 <!doctype html>
 <!--
-  CLOSATIX website — VERSION 3  (17 August 2026)
+  CLOSATIX website — VERSION 4  (18 August 2026)
 
   If you open an index.html and DON'T see this version block at the top,
-  you are looking at an old copy. Delete it. Keeping "index 23.html",
-  "index 24.html" and similar around is how the wrong file gets deployed.
+  you are looking at an old copy. Delete it.
 
-  New in v3:
-    · All "in under a minute" system-speed claims removed — hero, meta
-      description, Open Graph, Twitter and the capability strip. We have
-      not measured the system yet, so we do not claim a number.
-    · Navigation button now reads "Book a Discovery Call", matching the
-      other primary buttons
-    · New on-page section: Lead Automation Audit (#audit), with a short
-      form. "Get Your Lead Automation Audit" scrolls there instead of
-      opening a Cal.com event that does not exist.
-    · The form validates but sends nothing until AUDIT_FORM_ENDPOINT is
-      set near the bottom of this file. It tells the visitor that
-      plainly rather than faking a confirmation. See the README.
+  New in v4:
+    · New section "See CLOSATIX in Action" (#demo), placed straight after
+      How It Works. It embeds demo.html in a 16:9 frame — visible on every
+      screen size, never behind a play button or a modal.
+    · The demo starts itself when the section scrolls into view and freezes
+      when it scrolls away or the tab is hidden.
+    · demo.html, assets/demo.css and assets/demo.js are new files. Everything
+      is local; nothing is loaded from a third-party host.
 
+  Unchanged in v4: every existing section, the Lead Automation Audit, the
+  Privacy and Terms pages, all colours, fonts and CTAs.
+
+  In v3:
+    · All system-speed claims removed
+    · Navigation button reads "Book a Discovery Call"
+    · Lead Automation Audit section added (#audit)
   In v2:
-    · Logo resized and the source file trimmed
-    · CTAs reworked; new FAQ on replacing the sales team
-    · Integrations list corrected for real estate
+    · Logo resized, CTAs reworked, integrations corrected for real estate
     · Open Graph card, favicon, canonical URL and JSON-LD added
-    · Booking buttons given real href values so they work without JS
-    · Privacy Policy and Terms now link to real pages
 -->
 <html lang="en">
 <head>
@@ -1125,6 +1123,111 @@ main{display:block;}
   transition:border-color .3s var(--ease);
 }
 .final-cta__alt a:hover{border-bottom-color:var(--coffee-500);}
+
+/* --------------------------------------------------
+   See CLOSATIX in Action — the embedded product demo
+   --------------------------------------------------
+   The demo lives in its own document (demo.html) and is shown in a
+   16:9 frame. Keeping it in an iframe means its fixed 1920x1080 stage
+   cannot leak layout into the page, and the page cannot scroll it.
+   It is visible on every screen size — never behind a play button. */
+.demo{
+  position:relative;
+  margin:clamp(34px,4vw,52px) auto 0;
+  max-width:1120px;
+  border-radius:var(--r-xl);
+  border:1px solid rgba(208,183,159,.2);
+  background:linear-gradient(180deg,rgba(76,47,32,.3),rgba(20,13,9,.6));
+  padding:clamp(10px,1.1vw,16px);
+  box-shadow:0 54px 110px -60px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+/* The 16:9 box. aspect-ratio holds the shape at every width, so the
+   frame never has to be measured in JavaScript and never jumps. */
+.demo__frame{
+  position:relative;
+  width:100%;
+  aspect-ratio:16 / 9;
+  border-radius:calc(var(--r-xl) - 8px);
+  overflow:hidden;
+  background:#0C0704;
+}
+.demo__frame iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+
+/* Shown until the demo document reports itself ready. */
+.demo__loading{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  font-size:.68rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--taupe-400);
+  background:#0C0704;
+  transition:opacity .5s var(--ease), visibility .5s;
+}
+.demo__loading::before{
+  content:"";
+  width:6px;height:6px;border-radius:50%;
+  background:var(--bronze);
+  animation:demoPulse 1.5s ease-in-out infinite;
+}
+@keyframes demoPulse{0%,100%{opacity:.3;}50%{opacity:1;}}
+.demo.is-ready .demo__loading{opacity:0;visibility:hidden;}
+
+.demo__foot{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px var(--space-md);
+  margin-top:clamp(20px,2.4vw,28px);
+}
+.demo__caption{
+  font-size:.8rem;
+  line-height:1.55;
+  color:rgba(208,183,159,.55);
+  max-width:52ch;
+}
+.demo__cta{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  min-height:48px;
+  padding:0 26px;
+  border-radius:var(--r-pill);
+  border:1px solid rgba(208,183,159,.34);
+  color:var(--cream-100);
+  font-size:.74rem;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  transition:border-color .35s var(--ease), background-color .35s var(--ease), transform .35s var(--ease);
+}
+.demo__cta:hover{
+  border-color:rgba(216,178,140,.7);
+  background:rgba(208,183,159,.08);
+  transform:translateY(-1px);
+}
+
+@media (max-width:640px){
+  .demo{padding:8px;border-radius:var(--r-lg);}
+  .demo__frame{border-radius:calc(var(--r-lg) - 6px);}
+  .demo__foot{flex-direction:column;align-items:stretch;text-align:center;}
+  .demo__caption{max-width:none;}
+  .demo__cta{justify-content:center;}
+}
 
 /* --------------------------------------------------
    Lead Automation Audit — the lower-commitment entry
@@ -2797,6 +2900,36 @@ h2,.h2{
     </div>
   </section>
 
+  <!-- ==================== SEE CLOSATIX IN ACTION ==================== -->
+  <section class="section bg-cream" id="demo" aria-labelledby="demo-title">
+    <div class="container">
+      <div class="section-head section-head--center reveal">
+        <span class="eyebrow">The Demo</span>
+        <h2 id="demo-title">See CLOSATIX <em>in Action</em></h2>
+        <p class="head-note">From new enquiry to qualified lead, CRM update, follow-up, and booking.</p>
+      </div>
+
+      <div class="demo reveal" id="demoShell">
+        <div class="demo__frame">
+          <p class="demo__loading" id="demoLoading">Loading demo</p>
+          <iframe
+            id="demoFrame"
+            src="./demo.html?embed=1"
+            title="CLOSATIX product demo — one enquiry from arrival to booked consultation"
+            loading="lazy"
+            allow="fullscreen"
+            allowfullscreen
+            scrolling="no"></iframe>
+        </div>
+
+        <div class="demo__foot">
+          <p class="demo__caption">An illustration of the workflow, using a sample enquiry. Plays on its own when it reaches the screen.</p>
+          <a class="demo__cta" data-booking href="https://cal.com/rami-sebaie/closatix-discovery-call" target="_blank" rel="noopener">Book a Discovery Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ==================== SOLUTIONS — THE LEAD ENGINE ==================== -->
   <section class="section bg-cream" id="solutions" aria-labelledby="solutions-title">
     <div class="container">
@@ -3651,6 +3784,70 @@ h2,.h2{
     });
   }
 
+  /* ---------- 1d. Embedded demo ----------
+     The demo runs in demo.html inside an iframe. It does not start itself;
+     this drives it, so the reel only plays while the section is actually on
+     screen and freezes the moment it is not. Two reasons: a demo that has
+     already finished by the time you scroll to it is worse than useless, and
+     an animation loop running off screen is wasted battery on a phone. */
+  function initDemo() {
+    const shell = document.getElementById("demoShell");
+    const frame = document.getElementById("demoFrame");
+    if (!shell || !frame) return;
+
+    let ready = false;
+    let visible = false;
+    let started = false;
+
+    function send(action) {
+      if (!ready || !frame.contentWindow) return;
+      try {
+        frame.contentWindow.postMessage({ channel: "closatix-demo", action: action }, "*");
+      } catch (e) {}
+    }
+
+    window.addEventListener("message", function (event) {
+      const data = event.data;
+      if (!data || data.channel !== "closatix-demo") return;
+
+      if (data.action === "ready") {
+        ready = true;
+        shell.classList.add("is-ready");
+        /* If the section was already on screen while the iframe was still
+           loading, start now rather than waiting for another scroll. */
+        if (visible) { send("play"); started = true; }
+      }
+    });
+
+    /* Without IntersectionObserver, just let it play once loaded. */
+    if (!("IntersectionObserver" in window)) {
+      visible = true;
+      return;
+    }
+
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        visible = entry.isIntersecting;
+        if (visible) {
+          /* First time it comes into view, start from the top. Afterwards,
+             pick up where the viewer left off. */
+          send(started ? "play" : "restart");
+          started = true;
+        } else {
+          send("pause");
+        }
+      });
+    }, { threshold: 0.45 });
+
+    observer.observe(shell);
+
+    /* Switching tabs should also stop it. */
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) send("pause");
+      else if (visible) send("play");
+    });
+  }
+
   /* ---------- 2. Mobile navigation ---------- */
   function initMobileNav() {
     const toggle = document.getElementById("navToggle");
@@ -3843,6 +4040,7 @@ h2,.h2{
     initBookingLinks();
     initLogoFallback();
     initAuditForm();
+    initDemo();
     initMobileNav();
     initScrollSpy();
     initFaq();

@@ -12,13 +12,17 @@ uploaded exactly as-is.
 ```
 .
 ├── index.html              Home page — the whole site is in this one file
+├── demo.html               The product demo, embedded by index.html
 ├── privacy.html            Privacy Policy (linked from the footer)
 ├── terms.html              Terms of Use (linked from the footer)
 ├── favicon.ico             Browser tab icon — must stay at the root
 ├── apple-touch-icon.png    iOS home-screen icon — must stay at the root
+├── .nojekyll               Stops GitHub Pages running Jekyll over the files
 └── assets/
     ├── closatix-logo.png   Wordmark used in the navigation and footer
-    └── closatix-og.png     1200×630 card shown when the link is shared
+    ├── closatix-og.png     1200×630 card shown when the link is shared
+    ├── demo.css            Styling for demo.html only
+    └── demo.js             Timeline engine for demo.html only
 ```
 
 `index.html` is self-contained: the CSS and JavaScript are inside it. That is
@@ -115,6 +119,54 @@ body is a flat object:
 - Submit the form yourself once and confirm the message arrives
 - Decide who responds, and how fast. An audit request that sits for a week is
   worse than no form at all
+
+---
+
+## The embedded demo
+
+`index.html` has a **See CLOSATIX in Action** section (`#demo`), placed straight
+after How It Works. It shows `demo.html` inside a 16:9 iframe.
+
+**It is visible on every screen size** — desktop, tablet and phone. It is not
+behind a play button and not in a modal.
+
+### How it behaves
+
+- Starts on its own when the section scrolls into view
+- Freezes when you scroll away, or when the browser tab is hidden
+- Controls (play / pause / restart / fullscreen) fade out while it plays and
+  return when the pointer moves
+- Runs 55 seconds, then holds on the final frame
+- No audio of any kind
+
+### Why an iframe
+
+The demo is built on a fixed 1920×1080 stage that is scaled to fit. In an
+iframe that stage cannot leak layout into the page, the page cannot scroll it,
+and its stylesheet cannot collide with the site's. `aspect-ratio: 16 / 9` on
+the wrapper holds the shape at every width without any JavaScript measuring.
+
+### On phones
+
+A 16:9 box on a phone is wide and short, so vertical space is what runs out.
+Rather than shrink the desktop layout until the text disappears, `demo.js`
+detects how small the stage is being drawn and switches the layout to a
+compact arrangement: the same content, laid out horizontally, with type sized
+up relative to the frame. Nothing is cropped and the aspect ratio never moves.
+
+If you edit the demo's content, re-check that each scene still fits at phone
+size — the compact rules are at the bottom of `assets/demo.css` under
+`data-density="compact"`.
+
+### Using the demo on its own
+
+`demo.html` also works as a standalone page — useful for screen recording:
+
+- `demo.html` — plays automatically
+- `demo.html?autoplay=0` — holds the first frame so you can line up a recording
+- `demo.html?embed=1` — waits to be driven by the page (what the iframe uses)
+
+Keyboard: `Space` play/pause · `R` restart · `F` fullscreen · `←` `→` scenes.
 
 ---
 
