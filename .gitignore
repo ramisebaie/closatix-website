@@ -1,0 +1,19 @@
+# OS clutter
+.DS_Store
+Thumbs.db
+desktop.ini
+._*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Local notes and drafts you don't want published
+/drafts/
+*.local.html
+
+# Netlify / Vercel local state
+.netlify/
+.vercel/
