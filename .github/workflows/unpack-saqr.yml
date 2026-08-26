@@ -7,6 +7,13 @@ on:
     paths:
       - '.saqr-package/**'
       - '.github/workflows/unpack-saqr.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.saqr-package/**'
+      - '.github/workflows/unpack-saqr.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -16,7 +23,7 @@ jobs:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
-      - name: Check out branch
+      - name: Check out SAQR branch
         uses: actions/checkout@v4
         with:
           ref: saqr-voice-site
@@ -26,6 +33,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          if [ ! -d .saqr-package ]; then
+            echo 'The package is already unpacked; nothing to do.'
+            exit 0
+          fi
           cat .saqr-package/part-* > /tmp/saqr-site.tar.gz.b64
           base64 --decode /tmp/saqr-site.tar.gz.b64 > /tmp/saqr-site.tar.gz
           echo '16e1891401c2c00f8ccd34364a468a911f069bd51f50c5132d0d5c8a87883beb  /tmp/saqr-site.tar.gz' | sha256sum --check --strict
