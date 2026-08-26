@@ -1,130 +1,116 @@
-# CLOSATIX Website — GitHub Pages Edition
+# SAQR Voice — HVAC AI Receptionist Website
 
-Static marketing site for CLOSATIX, a managed AI lead automation service for property management companies and real estate teams.
+A static, bilingual marketing website for a managed AI voice answering, qualification and booking service aimed at HVAC / air-conditioning companies in Saudi Arabia.
 
-There is no framework, build command, package manager or server-side code. Upload the files to a GitHub repository and serve them directly with GitHub Pages.
+## Working brand
 
-## What this version communicates
+The website currently uses **SAQR Voice** as a working brand. It can be renamed globally before launch without changing the site structure.
 
-- CLOSATIX is a **managed implementation and ongoing service**, not self-serve software.
-- The primary audience is property management companies and real estate teams with consistent inbound inquiries.
-- The client journey is clear: audit, build, validate, launch and manage.
-- The product demo uses a fictional Canadian inquiry.
-- The integrations shown match the current implementation stack.
-- No unconnected form is exposed to prospects.
-- No testimonials, conversion claims or client results are invented.
+## Design direction
 
-## Folder structure
+- Olive, ivory, white and black visual system
+- Arabic-first, with a complete English version
+- Responsive layout for phone, tablet and desktop
+- No stock photography or copied creative assets
+- Custom SVG brand mark and icon system
+- Motion with reduced-motion support
+- Accessible navigation, tabs, FAQ and focus states
 
-```text
-.
-├── index.html                 Main marketing site
-├── demo.html                  Embedded product demonstration
-├── privacy.html               Current website privacy notice
-├── terms.html                 Website terms
-├── 404.html                   GitHub Pages fallback page
-├── robots.txt                 Search crawler instructions
-├── BACKLOG.md                 Deferred launch and production items
-├── README.md                  This file
-├── favicon.ico
-├── apple-touch-icon.png
-├── .nojekyll
-└── assets/
-    ├── closatix-logo.png
-    ├── closatix-og.png
-    ├── demo.css
-    └── demo.js
-```
-
-## One external item to verify before outreach
-
-Every booking button currently points to:
+## Pages
 
 ```text
-https://cal.com/rami-sebaie/closatix-discovery-call
+index.html          Arabic homepage
+en.html             English homepage
+demo.html           Standalone interactive demo simulation
+privacy.html        Arabic website privacy notice
+privacy-en.html     English website privacy notice
+terms.html          Arabic website terms
+terms-en.html       English website terms
+404.html            GitHub Pages fallback
+robots.txt
+.nojekyll
+assets/
+  icons.svg
+  saqr-mark.svg
+  site.css
+  site.js
 ```
 
-Open that URL in an incognito/private browser window and confirm that:
+## Implemented sections
 
-1. the event exists;
-2. a visitor can choose a time;
-3. the event title and description are client-facing;
-4. the booking questions are correct; and
-5. confirmations reach the intended calendar and email.
+- Outcome-led hero for Saudi HVAC companies
+- Interactive call-to-booking simulation
+- After-hours and peak-call problem framing
+- Full capability grid
+- Managed implementation process
+- Interactive use-case tabs
+- Integration categories with compatibility disclaimer
+- Editable SAR revenue-recovery calculator
+- Founding Partner programme
+- FAQ
+- Arabic and English legal notices
 
-The URL appears in `index.html`, `demo.html`, `privacy.html` and `terms.html`. Use Find and Replace across the project if the event slug changes.
+## Critical launch items
 
-## Deploying with GitHub Pages
+### 1. Booking URL
 
-1. Create a new GitHub repository.
-2. Upload the **contents of this folder** to the repository root.
-3. Open **Settings → Pages**.
-4. Under **Build and deployment**, select **Deploy from a branch**.
-5. Choose branch `main` and folder `/ (root)`.
-6. Save and wait for the GitHub Pages URL.
-7. Test the homepage, demo, mobile menu, FAQ, legal pages and every booking button.
+All booking buttons are set in `assets/site.js`:
 
-The `.nojekyll` file should remain at the repository root.
-
-## Custom domain later
-
-The site works without a custom domain. Until one is connected, canonical and social-card paths are relative so the site does not claim an unowned domain.
-
-After the real domain is connected:
-
-1. Replace `<link rel="canonical" href="./">` in `index.html` with the final absolute URL.
-2. Add an absolute `og:url` meta tag.
-3. Replace the relative `og:image` and `twitter:image` values with the final absolute image URL.
-4. Replace the relative canonical in `demo.html`.
-5. Add the domain in GitHub Pages settings and create the generated `CNAME` file.
-6. Re-test the link preview with the final live URL.
-
-## Lead Flow Audit section
-
-The previous seven-field audit form was intentionally removed from the live interface because it did not have a production backend. The current section sends visitors to a discovery call and does not collect data on the website.
-
-The planned production flow remains:
-
-```text
-Audit Form → Make webhook → HubSpot contact record → internal notification/email
-           → optional Discovery Call routing
+```js
+const BOOKING_URL = 'https://cal.com/rami-sebaie/closatix-discovery-call';
 ```
 
-See `BACKLOG.md` before restoring a form.
+This is the existing CLOSATIX booking event. Before sending the new site to prospects, either:
 
-## Legal pages
+1. create a dedicated SAQR Voice / HVAC AI demo event and replace the URL; or
+2. rename and rewrite the existing event so the page title, questions and confirmations match this offer.
 
-`privacy.html` and `terms.html` describe the current public website behaviour and contain no legal-entity, address or jurisdiction placeholders. They are not a replacement for professional legal review.
+### 2. Live demo phone number
 
-When the company structure, official notices email, business address and governing law are finalised, have a qualified Canadian professional review and update the legal pages and service agreement.
+The public site currently provides an honest interactive UI simulation. It does **not** show a fake callable number. Once the master voice demo is deployed, add the real number and a `tel:` button to the hero and demo sections.
 
-## Editing
+### 3. Brand and domain
 
-The homepage CSS and JavaScript are inside `index.html`. The product demo has separate files:
+Before connecting a custom domain:
 
-- `demo.html`
-- `assets/demo.css`
-- `assets/demo.js`
+- confirm the final brand name;
+- check domain and trademark availability;
+- update canonical and social metadata with absolute URLs;
+- add a production social-sharing image in PNG format;
+- add the GitHub Pages `CNAME` file.
 
-Useful searches inside `index.html`:
+### 4. Official contact details
 
-| Change | Search for |
-|---|---|
-| Booking URL | `BOOKING_URL` |
-| Hero copy | `HERO` |
-| Implementation journey | `HOW IT WORKS` |
-| Integrations | `CURRENT IMPLEMENTATION STACK` |
-| Founding-client message | `FOUNDING CLIENT CTA` |
-| Lead audit | `LEAD FLOW AUDIT` |
-| FAQ | `FAQ` |
+No unowned email address, fake office address or unregistered company details are displayed. Add official legal/contact details only when they are real and approved.
 
-## Pre-outreach check
+### 5. Integrations
 
-Before sending the site to prospects:
+The integration strip is explicitly framed as compatible categories to be assessed. Do not turn any item into a firm supported-integration claim until the technical team verifies the client’s version, plan, API and permissions.
 
-- confirm the Cal.com event works;
-- open the live site on a phone and desktop;
-- watch the full demo once;
-- verify the legal pages and footer links;
-- do not publish a client result until it is real, measured and approved; and
-- do not describe an integration as supported until compatibility has been confirmed.
+## Deployment
+
+This project has no framework or build step.
+
+1. Serve the repository root through GitHub Pages or any static host.
+2. Keep `.nojekyll` in the root.
+3. Test `index.html`, `en.html`, `demo.html`, both legal languages and `404.html`.
+4. Verify every booking button in an incognito window.
+5. Test the interactive demo, tabs, ROI calculator, FAQ and mobile menu.
+
+## Editing shortcuts
+
+- Brand name: search for `SAQR Voice` and `SAQR VOICE`
+- Booking URL: `BOOKING_URL` in `assets/site.js`
+- Calculator defaults: inputs with `data-roi-input` in both homepages
+- Demo transcript: `callScripts` in `assets/site.js`
+- Main palette: CSS variables at the top of `assets/site.css`
+
+## Truthfulness rules retained in the website
+
+- no fake clients;
+- no invented testimonials;
+- no unsupported revenue guarantee;
+- no claim that every integration works automatically;
+- demo customer data is clearly fictional;
+- the current brand is not presented as a registered legal entity;
+- call recording and transcript features are described as subject to legal and client requirements.

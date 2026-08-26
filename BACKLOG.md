@@ -1,84 +1,40 @@
-# CLOSATIX Website Backlog
+# SAQR Voice Website — Launch Backlog
 
-These items are intentionally deferred. They are not production-complete merely because the website mentions the broader CLOSATIX service.
+## Must complete before outreach
 
-## 1. Production Lead Automation Audit form
+- [ ] Confirm final brand name.
+- [ ] Confirm the developer can build the exact master demo described by the offer.
+- [ ] Create or rename the Cal.com event for the HVAC voice offer.
+- [ ] Replace `BOOKING_URL` in `assets/site.js`.
+- [ ] Test booking confirmations and questions.
+- [ ] Add the real demo phone number only after it is live and tested.
+- [ ] Test Arabic voice quality, interruptions, latency, booking and human transfer.
+- [ ] Test all website pages on iPhone and desktop.
 
-Current state: the public website does **not** collect audit submissions.
+## Business and proof
 
-Planned flow:
+- [ ] Confirm the target ICP: Saudi HVAC companies with meaningful call volume and operational capacity.
+- [ ] Finalise founding-client offer, implementation scope and recurring service.
+- [ ] Define what usage costs are included and what is billed separately.
+- [ ] Do not publish a testimonial or performance result before it is real, measured and approved.
+- [ ] Prepare discovery script, proposal, onboarding checklist and service agreement for this offer.
 
-```text
-Audit Form
-→ Make webhook
-→ validate and normalise fields
-→ HubSpot contact create/update
-→ internal notification/email
-→ optional Discovery Call routing
-→ submission logging and failure alert
-```
+## Technical production
 
-Before enabling:
+- [ ] Select voice AI, telephony, LLM and automation stack.
+- [ ] Confirm Saudi number availability and telecom requirements.
+- [ ] Confirm Arabic/English voice quality with real calls.
+- [ ] Define data storage, retention and deletion rules.
+- [ ] Define recording disclosure and consent requirements per target market.
+- [ ] Add monitoring, retry queues and failure notifications.
+- [ ] Define CRM/calendar compatibility checklist.
+- [ ] Add a production lead-capture backend only after delivery destination and privacy terms are final.
 
-- define required and optional fields;
-- add spam protection and rate limiting;
-- obtain explicit consent wording where required;
-- test success, duplicate, invalid and failed-delivery cases;
-- ensure the visitor sees a real confirmation only after a successful response;
-- update the privacy notice; and
-- assign an owner and response-time standard.
+## Brand and deployment
 
-## 2. Custom domain and professional email
-
-- purchase and connect the final CLOSATIX domain;
-- create role-based addresses only after they can receive mail;
-- update canonical, Open Graph and Twitter image URLs;
-- update legal contact details; and
-- configure DNS security records for email.
-
-## 3. Legal and company details
-
-- contracting legal entity and owner name;
-- registration number, if applicable;
-- registered business address;
-- official legal/notices email;
-- governing law and dispute forum;
-- support channel;
-- payment, tax and invoice details; and
-- final review of privacy, website terms and service agreement.
-
-## 4. Integrations
-
-The website currently lists the tested implementation stack:
-
-- HubSpot
-- Make
-- Cal.com
-- Gmail
-- Google Sheets
-- website forms
-- webhooks / APIs
-
-Do not add other CRM or platform logos until a real compatibility test has been completed or the proposal clearly identifies the integration as custom scope.
-
-## 5. Proof and case studies
-
-Add only after a client has approved publication:
-
-- baseline lead-response process;
-- verified operational improvement;
-- client quote;
-- anonymised workflow screenshots where required; and
-- measurement period and limitations.
-
-Never publish invented metrics, logos or testimonials.
-
-## 6. Product improvements to consider after client feedback
-
-- lead score from 0–100 with a short reason;
-- staff-facing AI lead summary;
-- multi-step no-response follow-up sequences;
-- old-lead recovery workflow;
-- client reporting dashboard;
-- workflow health alerts; and
-- additional CRM integrations based on actual demand.
+- [ ] Check domain availability and trademark conflicts.
+- [ ] Create production PNG social card.
+- [ ] Add absolute canonical URLs and `og:url` after domain connection.
+- [ ] Add official contact and legal-notice email once established.
+- [ ] Add legal entity, address and governing law after UAE setup or other final structure.
+- [ ] Obtain professional legal review before relying on the pages as final production legal documents.
